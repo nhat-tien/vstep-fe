@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 //import '.Login.css'; Chỉnh CSS sau.
 
 const Login = () => 
     {
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
+        const [Email, setEmail] = useState('');
+        const [Password, setPassword] = useState('');
         const [error, setError] = useState ('');
         const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ const Login = () =>
                     },
                 //Ta sẽ cho server biết dữ liệu trong body của yêu cầu sẽ ở định dạng Json.
 
-                    body: JSON.stringify({email, password}),
+                    body: JSON.stringify({Email, Password}),
                 //Như đã nói ở trên, dữ liệu ở phần body sẽ ở dạng Json, đây là câu lệnh chuyển đối tượng email và password thành một chuỗi JSON.
                 });
         const data = await response.json();
@@ -45,6 +45,44 @@ const Login = () =>
         setLoading(false);
                 //Dù đăng nhập thành công hay thất bại, state của loading phải được chuyển thành false, không thì trang web sẽ tiếp tục xoay.
     }
-    };
-
     }
+};
+
+return
+(
+    <div className = "Login-container">
+        <form className='login-form' onSubmit={handlelogin}>
+            <h2>Login</h2>
+            {
+                error && <p className='error'>{error}</p>
+                //Câu điều kiện kiểm tra, nếu error tồn tại giá trị, đoạn mã sau dấu && sẽ được thực hiện.
+            }   
+        <div className="form-group">
+    
+            <label htmlFor="email">Email: </label>
+            <input  //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
+                type="email" //Dạng dữ liệu người dùng nhập vào phải là dạng email.
+                id = "email" //Đặt id cho giá trị này để sau này dễ dùng. 
+                value={Email} //Gán giá trị của Value cho biến Email. 
+                onChange={(e) => setEmail(e.target.value)} //Nếu người dùng thay đổi thông tin (biến value), Email sẽ thay đổi theo bằng useState.
+                required //Buộc phải có.
+            />
+        </div>
+        <div className='form-group'> 
+            <label htmlFor="password">Password:</label>
+            <input
+                type = "password"
+                id = "password"
+                value={Password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
+        </div>
+        <button type='submit' disabled = {loading}>
+            {loading ? 'Logging in...' : 'Login'}
+        </button>
+        </form>
+    </div>
+);
+
+export default Login;
