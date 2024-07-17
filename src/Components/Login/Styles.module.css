@@ -1,0 +1,109 @@
+/* Container styles */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #007bff;
+}
+/* Form styles */
+.login-form {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-groups
+{
+  position: relative;
+  top: -60px;
+}
+
+.title {
+  text-align: center; 
+  position: relative;
+  top: -90px;
+  font-size: 50px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -130px;
+}
+
+.login-form h2 {
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  display: flex;
+  align-content: center;
+  background-color: #fff;
+  width: 150%;
+  padding: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+  font-size: 16px;
+  color: black;
+  position: relative;
+  right: 75px;
+}
+
+/* Button styles */
+.button-container {
+  margin-top: 15px;
+  place-items: center;
+  position: relative;
+  left: 60px;
+}
+
+.button-container button {
+  width: 70%;
+  padding: 15px;
+  border-radius: 4px;
+  border: none;
+  background: #28a745;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button-container button:disabled {
+  background: #999;
+}
+
+.button-container button:hover:not(:disabled) {
+  background: #218838;
+}
+
+/* Error message */
+.error {
+  position: relative;
+  left: -70px;
+  margin-top: 8px;
+  color: #ff4b5c;
+  margin-bottom: 8px;
+  visibility: hidden;
+  height: 0;
+  transition: visibility 0s, height 0.3s ease-in-out;
+  height: 20px;
+}
+
+.error.visible {
+  visibility: visible;
+  height: 20px;
+}
