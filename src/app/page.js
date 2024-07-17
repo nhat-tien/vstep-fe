@@ -1,10 +1,11 @@
-import Login from "@/Components/Login";
-
+import styles from "@/app/page.module.css";
+import Login from "@/components/Login/Login.js";
     const Homepage = () =>{
         return (
-            <div className="Title">
-                <h1>Chào mừng các bạn đến với trang web thi thử Vstep</h1>
-                <Login />
+            <div className= {styles['body']}>
+                    <div className= {styles['login-container']}>
+                        <Login />
+                    </div>
             </div>
         );
     };

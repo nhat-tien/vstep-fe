@@ -1,13 +1,15 @@
 'use client'
 import { useState } from 'react';
-import styles from '@/Components/Login.module.css';
-
+import styles from '@/components/Login/Styles.module.css';
+import Image from 'next/image';
+//import Router, { useRouter } from 'next/router'; Chuyển hướng.
 const Login = () => 
     {
         const [Email, setEmail] = useState('');
         const [Password, setPassword] = useState('');
         const [error, setError] = useState ('');
         const [loading, setLoading] = useState(false);
+        //const router = useRouter(); 
 
         const handlelogin = async (event) => {
             event.preventDefault();
@@ -35,8 +37,10 @@ const Login = () =>
                 //Trường hợp thông tin không được trả về hoặc lỗi.
         }
         console.log('Thành công:', data);
-        alert('Đăng nhập thành công! Chuẩn bị lên thớt!');
+        alert('Đăng nhập thành công!');
                 //Đăng nhập thành công.
+        //router.push('/Trang tiếp theo'); Chuyển hướng.
+
     } catch (error)
                 //Xuất hiện lỗi.
     {   console.error('Lỗi:', error);
@@ -47,40 +51,48 @@ const Login = () =>
                 //Dù đăng nhập thành công hay thất bại, state của loading phải được chuyển thành false, không thì trang web sẽ tiếp tục xoay.
     }
 };
-
     return(
-    <div className = {styles.loginContainer}>
-        <form className={styles.loginForm} onSubmit={handlelogin}>
-            <h2>Login</h2>
-            {
-                error && <p className={styles.error}>{error}</p>
-                //Câu điều kiện kiểm tra, nếu error tồn tại giá trị, đoạn mã sau dấu && sẽ được thực hiện.
-            }   
-        <div className={styles.formGroup}>
-            <label htmlFor="email">Email: </label>
+    <div className = {styles['login-container']}>
+        <form className={styles['login-Form']} onSubmit={handlelogin}>
+        <div className={styles['logo']}>
+                    <Image
+                        src = "/images/Quốc Huy Việt Nam 1.svg"
+                        alt = "Logo"
+                        width={103}
+                        height={105}
+                    />
+                </div>
+                <h1 className={styles['title']}>Thi thử VSTEP</h1>
+                    <div className={styles['form-groups']}> 
+        <div className={styles['form-group']}>
+            <label htmlFor="email"></label>
             <input  //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
                 type="email" //Dạng dữ liệu người dùng nhập vào phải là dạng email.
-                id = "email" //Đặt id cho giá trị này để sau này dễ dùng. 
+                id = "email" //Đặt id cho giá trị này để sau này dễ dùng.
+                placeholder='Nhập tài khoảng...' 
                 value={Email} //Gán giá trị của Value cho biến Email. 
                 onChange={(e) => setEmail(e.target.value)} //Nếu người dùng thay đổi thông tin (biến value), Email sẽ thay đổi theo bằng useState.
                 required //Buộc phải có.
             />
         </div>
-        <div className={styles.formGroup}> 
-            <label htmlFor="password">Password:</label>
+        <div className={styles['form-group']}> 
+            <label htmlFor="password"></label>
             <input
                 type = "password"
                 id = "password"
+                placeholder='Nhập mật khẩu...'
                 value={Password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
         </div>
-        <div className={styles.buttonContainer}>
-        <button type='submit' disabled = {loading}>
-            {loading ? 'Logging in...' : 'Login'}
-        </button>
+                <p className={`${styles['error']} ${error ? styles['visible'] : ''}`}>{error}</p>
+        <div className={styles['button-container']}>
+            <button type='submit' disabled = {loading}>
+                {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+            </button>
         </div>
+                    </div>  
         </form>
     </div>
 );
