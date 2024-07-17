@@ -1,5 +1,6 @@
+'use client'
 import { useState } from 'react';
-//import '.Login.css'; Chỉnh CSS sau.
+import styles from '@/Components/Login.module.css';
 
 const Login = () => 
     {
@@ -45,20 +46,17 @@ const Login = () =>
         setLoading(false);
                 //Dù đăng nhập thành công hay thất bại, state của loading phải được chuyển thành false, không thì trang web sẽ tiếp tục xoay.
     }
-    }
 };
 
-return
-(
-    <div className = "Login-container">
-        <form className='login-form' onSubmit={handlelogin}>
+    return(
+    <div className = {styles.loginContainer}>
+        <form className={styles.loginForm} onSubmit={handlelogin}>
             <h2>Login</h2>
             {
-                error && <p className='error'>{error}</p>
+                error && <p className={styles.error}>{error}</p>
                 //Câu điều kiện kiểm tra, nếu error tồn tại giá trị, đoạn mã sau dấu && sẽ được thực hiện.
             }   
-        <div className="form-group">
-    
+        <div className={styles.formGroup}>
             <label htmlFor="email">Email: </label>
             <input  //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
                 type="email" //Dạng dữ liệu người dùng nhập vào phải là dạng email.
@@ -68,7 +66,7 @@ return
                 required //Buộc phải có.
             />
         </div>
-        <div className='form-group'> 
+        <div className={styles.formGroup}> 
             <label htmlFor="password">Password:</label>
             <input
                 type = "password"
@@ -78,11 +76,13 @@ return
                 required
             />
         </div>
+        <div className={styles.buttonContainer}>
         <button type='submit' disabled = {loading}>
             {loading ? 'Logging in...' : 'Login'}
         </button>
+        </div>
         </form>
     </div>
 );
-
+};
 export default Login;

@@ -1,0 +1,49 @@
+/* Login.module.css */
+
+.loginContainer {
+  /* CSS cho container chứa form đăng nhập */
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loginForm {
+  /* CSS cho form đăng nhập */
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  /* CSS cho thông báo lỗi */
+  color: red;
+  margin-bottom: 10px;
+}
+
+.formGroup {
+  /* CSS cho mỗi nhóm input */
+  margin-bottom: 15px;
+}
+
+.buttonContainer {
+  /* CSS cho container chứa nút đăng nhập */
+  text-align: center;
+}
+
+.buttonContainer button {
+  /* CSS cho nút đăng nhập */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonContainer button:disabled {
+  /* CSS cho trạng thái nút đăng nhập bị disabled */
+  background-color: #ccc;
+  cursor: not-allowed;
+}
