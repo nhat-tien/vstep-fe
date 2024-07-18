@@ -1,8 +1,8 @@
-'use client'
+"use client"
 import { useState } from 'react';
 import styles from '@/components/Login/Styles.module.css';
 import Image from 'next/image';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 const Login = () => 
     {
         const [Email, setEmail] = useState('');
@@ -22,7 +22,7 @@ const Login = () =>
             const response = await fetch('https://vidu.com/api/login',{
                     method: 'POST',
                 //Method: 'POST' tức ta sẽ gửi yêu cầu (thông tin đăng nhập) của người dùng đến API được ghi trong fetch.
-                    header: {
+                    headers: {
                         'Content-Type': 'application/json',
                     },
                 //Ta sẽ cho server biết dữ liệu trong body của yêu cầu sẽ ở định dạng Json.
@@ -40,12 +40,12 @@ const Login = () =>
         alert('Đăng nhập thành công!');
                 //Đăng nhập thành công.
         localStorage.setItem('user', JSON.stringify(data.user)); //Lưu thông tin nhận về từ POST vào một Item tên user.
-        router.push('/Checking Page');
+        router.push('/CheckingPage');
 
     } catch (error)
                 //Xuất hiện lỗi.
     {   console.error('Lỗi:', error);
-        setError(error.message);
+        setError('Có gì đó không ổn?' || error.message);
         
     } finally {
         setLoading(false);
@@ -87,7 +87,7 @@ const Login = () =>
                 required
             />
         </div>
-                <p className={`${styles['error']} ${error ? styles['visible'] : ''}`}>{error}</p>
+            <p className={`${styles['error']} ${error ? styles['visible'] : ''}`}>{error}</p>
         <div className={styles['button-container']}>
             <button type='submit' disabled = {loading}>
                 {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}

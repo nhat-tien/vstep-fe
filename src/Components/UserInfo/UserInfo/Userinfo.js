@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import AudioTesting from "@/components/UserInfo/Audio Testing/AudioTesting";
+import AudioTesting from "@/components/UserInfo/AudioTesting/AudioTesting";
 import styles from "@/components/Userinfo/UserInfo/Styles.module.css";
 
 const WebcamStreaming = dynamic(() => import("@/components/UserInfo/WebcamStreaming/WebcamStreaming"), { ssr: false});
