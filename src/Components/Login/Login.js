@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import styles from '@/components/Login/Styles.module.css';
 import Image from 'next/image';
-//import Router, { useRouter } from 'next/router'; Chuyển hướng.
+import Router, { useRouter } from 'next/router';
 const Login = () => 
     {
         const [Email, setEmail] = useState('');
         const [Password, setPassword] = useState('');
         const [error, setError] = useState ('');
         const [loading, setLoading] = useState(false);
-        //const router = useRouter(); 
+        const router = useRouter(); 
 
         const handlelogin = async (event) => {
             event.preventDefault();
@@ -39,7 +39,8 @@ const Login = () =>
         console.log('Thành công:', data);
         alert('Đăng nhập thành công!');
                 //Đăng nhập thành công.
-        //router.push('/Trang tiếp theo'); Chuyển hướng.
+        localStorage.setItem('user', JSON.stringify(data.user)); //Lưu thông tin nhận về từ POST vào một Item tên user.
+        router.push('/Checking Page');
 
     } catch (error)
                 //Xuất hiện lỗi.
@@ -92,7 +93,7 @@ const Login = () =>
                 {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             </button>
         </div>
-                    </div>  
+                    </div>
         </form>
     </div>
 );
