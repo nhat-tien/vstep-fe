@@ -1,11 +1,13 @@
-import styles from "@/app/Checking Page/page.module.css";
+import styles from "@/app/CheckingPage/page.module.css";
 import Userinfor from "@/components/UserInfo/UserInfo/Userinfo";
 
 const CheckingPage = () => {
     return (
+        <div className={styles['body']}>
         <div className={styles['checking-page']}> 
              <Userinfor/> 
-        </div>     
+        </div>    
+        </div> 
     );
 };
 

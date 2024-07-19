@@ -52,6 +52,11 @@ const Login = () =>
                 //Dù đăng nhập thành công hay thất bại, state của loading phải được chuyển thành false, không thì trang web sẽ tiếp tục xoay.
     }
 };
+        const handleNavigation = () => {
+        router.push('/CheckingPage');
+    };
+
+
     return(
     <div className = {styles['login-container']}>
         <form className={styles['login-Form']} onSubmit={handlelogin}>
@@ -93,6 +98,7 @@ const Login = () =>
                 {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             </button>
         </div>
+        <button onClick={handleNavigation}>Nhảy</button>
                     </div>
         </form>
     </div>
