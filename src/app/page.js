@@ -3,10 +3,7 @@ import Login from "@/components/Login/Login.js";
     const Homepage = () =>{
         return (
             <div className= {styles['main']}>
-{                    /* <div className= {styles['login-container']}> 
-                         <Login /> 
-                     </div> */}
-						<Login />
+							<Login />
             </div>
         );
     };

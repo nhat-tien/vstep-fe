@@ -1,0 +1,10 @@
+.checking-page { /* Blue background */
+    font-family: Arial, sans-serif;
+}
+.body
+{   
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: #0078D7;
+}

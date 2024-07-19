@@ -18,11 +18,11 @@
   /* max-width: 400px; */
 }
 
-.form-groups
-{
-  /* position: relative; */
-  /* top: -60px; */
-}
+/* .form-groups */
+/* { */
+/*   position: relative; */
+/*   top: -60px; */
+/* } */
 
 .title {
   text-align: center; 
@@ -87,12 +87,12 @@
 }
 
 /* Button styles */
-.button-container {
-  /* margin-top: 10px; */
-  /* place-items: center; */
-  /* position: relative; */
-  /* left: 60px; */
-}
+/* .button-container { */
+/*   margin-top: 10px; */
+/*   place-items: center; */
+/*   position: relative; */
+/*   left: 60px; */
+/* } */
 
 .button-container button {
   width: 50%;
