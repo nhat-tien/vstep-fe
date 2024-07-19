@@ -1,14 +1,11 @@
 import styles from "@/app/page.module.css";
 import Login from "@/components/Login/Login.js";
-
-    const login = () =>{
+    const Homepage = () =>{
         return (
             <div className= {styles['main']}>
-                <div className= {styles['login-container']}> 
-                         <Login /> 
-                </div> 
+							<Login />
             </div>
         );
     };
 
-export default login;
+export default Homepage;

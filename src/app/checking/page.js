@@ -1,4 +1,4 @@
-import styles from "@/app/CheckingPage/page.module.css";
+import styles from "./page.module.css";
 import Userinfor from "@/components/UserInfo/UserInfo/Userinfo";
 
 const CheckingPage = () => {
