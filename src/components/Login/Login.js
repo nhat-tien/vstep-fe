@@ -67,22 +67,22 @@ const Login = () => {
       <form className={styles["login-form"]} onSubmit={handlelogin}>
         <div className={styles["form-groups"]}>
           <div className={styles["form-group"]}>
-            <label htmlFor="email">Nhập tài khoản</label>
+            <label htmlFor="email"></label>
             <input //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
               type="email" //Dạng dữ liệu người dùng nhập vào phải là dạng email.
               id="email" //Đặt id cho giá trị này để sau này dễ dùng.
-              // placeholder='Nhập tài khoảng...'
+              //placeholder='Nhập tài khoảng...'
               value={Email} //Gán giá trị của Value cho biến Email.
               onChange={(e) => setEmail(e.target.value)} //Nếu người dùng thay đổi thông tin (biến value), Email sẽ thay đổi theo bằng useState.
               required //Buộc phải có.
             />
           </div>
           <div className={styles["form-group"]}>
-            <label htmlFor="password">Nhập mật khẩu</label>
+            <label htmlFor="password"></label>
             <input
               type="password"
               id="password"
-              // placeholder='Nhập mật khẩu...'
+              //placeholder='Nhập mật khẩu...'
               value={Password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -97,8 +97,8 @@ const Login = () => {
             </button>
           </div>
         </div>
+        <button onClick={handleNavigation}>Nhảy</button>
       </form>
-      <button onClick={handleNavigation}>Nhảy</button>
     </div>
   );
 };
