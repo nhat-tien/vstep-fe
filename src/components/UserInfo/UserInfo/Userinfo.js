@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import AudioTesting from "@/components/UserInfo/AudioTesting/AudioTesting";
 import styles from "@/components/UserInfo/UserInfo/styles.module.css";
+import getProfile from "@/services/getProfile";
+import { logout } from "@/services/auth";
 
 const WebcamStreaming = dynamic(
   () => import("@/components/UserInfo/WebcamStreaming/WebcamStreaming"),
@@ -18,13 +20,23 @@ const UserInfo = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(storedUser);
-  }, []);
+    const fetchUserProfile = async () =>
+    {
+      try {
+        const userData = await getProfile();
+        setUser(userData);
+      } catch (error)
+      {
+        console.error('Lỗi khi nhận thông tin người dùng: ', error);
+      }
+    };
+  fetchUserProfile();
+}, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    router.replace("/");
+    logout();
+    router.push("/");
   };
 
   const handleDisplayWebcam = async () => {
@@ -41,7 +53,7 @@ const UserInfo = () => {
   };
 
   const handleReceiveExam = () => {
-    router.push("/exam/listen");
+    router.push("/exam/listening/1");
   };
 
   return (
@@ -66,11 +78,11 @@ const UserInfo = () => {
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>Giới tính:</span>{" "}
-            {user ? user.gender : "Gay"}
+            {user ? user.gender : "Nam"}
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>Tài khoản:</span>{" "}
-            {user ? user.account : "BanTraiTien@gay.com"}
+            {user ? user.account : "BanTraiTien@gmail.com"}
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>SBD:</span>{" "}
