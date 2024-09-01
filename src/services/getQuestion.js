@@ -23,7 +23,7 @@ export default async function getExam () {
 export default async function getQuestion() {
     try {  
     const slug = params.slug;
-        const data = http.get(`exam?skill=${slug[0]}&part=${slug[1]}`); //??? Rồi thì sài này sao?
+        const data = http.get(`exam/{examId}?skill=${slug[0]}&part=${slug[1]}`); //??? Rồi thì sài này sao?
         return data;
   } catch (e) {
     throw new Error ("Something wrong" + e.toString());
