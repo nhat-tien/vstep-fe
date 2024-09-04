@@ -1,7 +1,7 @@
-"user server"
+"use server"
 import * as http from "@/lib/http";
 
-export default async function getExamID (){
+export async function getExamID (){
         try {
             const data = http.get('/shedules');
             return data;
@@ -10,7 +10,7 @@ export default async function getExamID (){
           }
 };
 
-export default async function getExam () {
+export async function getExam () {
     try {
         const Schedule = getExamID();
         const questionData = http.get(`/exam/${Schedule.examId}`);
@@ -23,7 +23,7 @@ export default async function getExam () {
 export default async function getQuestion() {
     try {  
     const slug = params.slug;
-        const data = http.get(`exam/{examId}?skill=${slug[0]}&part=${slug[1]}`); //??? Rồi thì sài này sao?
+        const data = http.get(`exam/{examId}?skill=${slug[0]}&part=${slug[1]}`);
         return data;
   } catch (e) {
     throw new Error ("Something wrong" + e.toString());

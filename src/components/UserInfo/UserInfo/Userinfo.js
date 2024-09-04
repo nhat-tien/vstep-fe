@@ -30,6 +30,7 @@ const UserInfo = () => {
         console.error('Lỗi khi nhận thông tin người dùng: ', error);
       }
     };
+  
   fetchUserProfile();
 }, []);
 

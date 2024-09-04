@@ -16,12 +16,12 @@ const handlelogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const respone = await login({Email, Password});
-      if (respone.ok) {
+      const response = await login({Email, Password});
+      if (response.ok) {
         alert("Đăng nhập thành công!");
         router.push("/checking");
     } else {
-      setError(respone.message);
+      setError(response.message);
     } 
     } catch (err)  {
       setError(err.message);

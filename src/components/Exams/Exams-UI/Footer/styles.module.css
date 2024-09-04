@@ -1,54 +1,71 @@
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
 .footer {
-  position: fixed; /* Đặt vị trí cố định */
-  bottom: 0; /* Cố định footer ở đáy của màn hình */
-  left: 0; /* Căn trái */
-  width: 100%; /* Chiếm toàn bộ chiều rộng */
-  background-color: #f8f9fa; /* Màu nền của footer */
-  border-top: 1px solid #ddd; /* Đường viền phía trên của footer */
-  padding: 1rem; /* Khoảng cách bên trong */
-  z-index: 1000; /* Đảm bảo footer nằm trên cùng các thành phần khác */
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .skills-container {
   display: flex;
-  flex-wrap: wrap; /* Cho phép các skill section tự động xuống dòng nếu cần */
-  gap: 20px; /* Khoảng cách giữa các skill section */
+  gap: 0;
+  align-items: center;
 }
 
 .skill-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Hiển thị nội dung theo cột */
   align-items: center;
+  justify-content: flex-start;
   background-color: #333;
-  border-radius: 8px;
-  padding: 10px;
-  width: auto;
+  border-radius: 0;
+  padding: 5px 0;
+  min-width: 120px;
+  border: none;
+  margin: 0 5px;
 }
 
 .phase-header {
-  margin-bottom: 10px;
+  margin-top: 5px; /* Khoảng cách bên trên cho phần tiêu đề */
+  width: 100%;
+  text-align: center;
 }
 
 .phase-title {
-  font-size: 20px;
+  font-size: 16px;
   margin: 0;
+  color: #fff;
 }
 
 .button-row {
   display: flex;
-  flex-wrap: nowrap; /* Đảm bảo nút không bị xuống dòng */
-  gap: 5px; /* Khoảng cách giữa các nút */
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .toggle-button {
-  padding: 10px 20px;
-  font-size: 16px;
+  flex: 1;
+  padding: 10px 10px;
+  font-size: 14px;
   background-color: #61dafb;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  outline: none;
+  border-radius: 0;
   cursor: pointer;
-  flex: 1; /* Chiếm không gian còn lại */
+  margin: 0;
 }
 
 .toggle-button.active {
@@ -58,7 +75,9 @@
 .disabled-button {
   background-color: #6c757d;
   cursor: not-allowed;
-  pointer-events: none; /* Ngăn chặn tương tác */
+  pointer-events: none;
+  border-radius: 0;
+  outline: none;
 }
 
 .disabled {

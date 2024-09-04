@@ -28,6 +28,7 @@ export async function login({ email, password }) {
       };
     }
   } catch (e) {
+    console.log(e);
     throw new Error("Fail to login");
   }
 }
