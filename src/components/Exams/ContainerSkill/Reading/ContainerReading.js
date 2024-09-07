@@ -1,6 +1,6 @@
 import React from 'react';
-import Text from '../../QuestionType/Text/Text';
-import MultipleChoice from '../../QuestionType/MultipleChoice/MultipleChoice';
+import Text from '../../QuestionType/Text';
+import MultipleChoice from '../../QuestionType/MultipleQuestion';
 
 const ContainerReading = ({ questions, handleAnswerChange }) => {
   return (

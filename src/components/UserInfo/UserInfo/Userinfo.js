@@ -23,8 +23,8 @@ const UserInfo = () => {
     const fetchUserProfile = async () =>
     {
       try {
-        const userData = await getProfile();
-        setUser(userData);
+        const {data} = await getProfile();
+        setUser(data);
       } catch (error)
       {
         console.error('Lỗi khi nhận thông tin người dùng: ', error);
@@ -79,15 +79,15 @@ const UserInfo = () => {
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>Giới tính:</span>{" "}
-            {user ? user.gender : "Nam"}
+            {user ? user.sex : "Nam"}
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>Tài khoản:</span>{" "}
-            {user ? user.account : "BanTraiTien@gmail.com"}
+            {user ? user.email : "BanTraiTien@gmail.com"}
           </p>
           <p>
             <span className={styles["boldFirstPart"]}>SBD:</span>{" "}
-            {user ? user.sbd : "LNT2032320"}
+            {user ? user.phoneNumber : "LNT2032320"}
           </p>
           <button onClick={handleLogout} className={styles["logout-button"]}>
             Đăng xuất

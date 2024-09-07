@@ -12,13 +12,14 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  localStorage.clear();
+
 const handlelogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await login({Email, Password});
+      const response = await login({email: Email, password: Password});
       if (response.ok) {
-        alert("Đăng nhập thành công!");
         router.push("/checking");
     } else {
       setError(response.message);
@@ -51,7 +52,7 @@ const handleNavigation = () => {
           <div className={styles["form-group"]}>
             <label htmlFor="email">Nhập tài khoản</label>
             <input //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
-              type="email" //Dạng dữ liệu người dùng nhập vào phải là dạng email.
+              type="email"
               id="email" //Đặt id cho giá trị này để sau này dễ dùng.
               value={Email} //Gán giá trị của Value cho biến Email.
               onChange={(e) => setEmail(e.target.value)} //Nếu người dùng thay đổi thông tin (biến value), Email sẽ thay đổi theo bằng useState.

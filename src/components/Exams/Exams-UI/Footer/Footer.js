@@ -23,7 +23,7 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
   };
 
   const handleSave = () => {
-    localStorage.setItem(`answers-${slug[0]}-${slug[1]}`, JSON.stringify(partAnswer));
+
   };
 
 

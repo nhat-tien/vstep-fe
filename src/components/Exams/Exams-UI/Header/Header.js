@@ -9,17 +9,17 @@ const Header = ({ timeRemaining }) => {
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
   const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  const {name, setName} = useState(null);
+  const [user, setUser] = useState(null);
   
   useEffect(() => {
     const fetchUserProfile = async () =>
     {
       try {
-        const userData = await getProfile();
-        setName(userData.name);
+        const {data} = await getProfile();
+        setUser(data);
       } catch (error)
       {
-        console.error('Lỗi khi nhận thông tin người dùng: ', error);
+        console.error('Lỗi khi nhận tên người dùng: ', error);
       }
     };
   fetchUserProfile();
@@ -27,8 +27,7 @@ const Header = ({ timeRemaining }) => {
 
   return (
     <header className={styles['header']}>
-      <h1 className={styles['user-name']}>{name ? name : 'Nguyễn Văn A'}</h1>
-      <h1 className={styles['title']}>Time Remaining</h1>
+      <h1 className={styles['user-name']}>{user ? user.name : 'Nguyễn Văn A'}</h1>
       <div className={styles['timer']}>
         {formattedTime}
       </div>

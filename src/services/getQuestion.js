@@ -1,30 +1,32 @@
 "use server"
 import * as http from "@/lib/http";
+import { env } from "@/lib/env";
 
-export async function getExamID (){
-        try {
-            const data = http.get('/shedules');
-            return data;
-        }  catch (e) {
-            throw new Error ("Something wrong" + e.toString());
-          }
-};
-
-export async function getExam () {
+export async function getSchedules (){
     try {
-        const Schedule = getExamID();
-        const questionData = http.get(`/exam/${Schedule.examId}`);
-        return questionData;
-    } catch {
-        throw new Error ("Có gì đó sai sai?" + e.toString());
+            const { data } = await http.get('/schedules');
+            return data;
+    }  catch (e) {
+            throw new Error ("Something wrong" + e.toString());
     }
 };
 
-export default async function getQuestion() {
+export default async function getQuestion (skill, part) {
     try {  
-    const slug = params.slug;
-        const data = http.get(`exam/{examId}?skill=${slug[0]}&part=${slug[1]}`);
-        return data;
+        const schedule = await getSchedules();
+        const examId = schedule.examId; 
+        const  { data }  = await http.get(`/exam/${examId}?skill=${skill}&part=${part}`);
+        console.log(data);
+
+        const ModifyData = data.map(item => {
+            return {
+              ...item,
+              fileUrl: item.fileUrl ? `http://${env("backendIP")}/storage/${item.fileUrl}` : '',
+            };
+        }
+        );
+
+        return ModifyData;
   } catch (e) {
     throw new Error ("Something wrong" + e.toString());
   }

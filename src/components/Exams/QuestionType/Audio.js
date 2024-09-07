@@ -6,7 +6,7 @@ const Audio = ({ question }) => {
     <div>
       <h3>{question.text}</h3>
       <audio controls>
-        <source src={question.audioUrl} type="audio/mpeg" />
+        <source src={question.fileUrl} type="audio/mpeg" />
       </audio>
     </div>
   );

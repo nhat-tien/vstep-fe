@@ -1,4 +1,3 @@
-
 export function env(envVariable) {
 
     const envVariableTable = {

@@ -1,7 +1,7 @@
 // components/ContainerSpeaking.js
 import React, { useState, useEffect } from 'react';
-import Picture from '../../QuestionType/Picture/Picture';
-import Text from '../../QuestionType/Text/Text';
+import Text from '../../QuestionType/Text';
+import Image from 'next/image';
 
 const ContainerSpeaking = ({ questions, handleAnswerChange }) => {
   const [currentPhase, setCurrentPhase] = useState(1); // Phase 1 or Phase 2
@@ -13,7 +13,6 @@ const ContainerSpeaking = ({ questions, handleAnswerChange }) => {
       setTimeLeft(prev => prev - 1);
     }, 1000);
 
-    // Kiểm tra khi hết giờ
     if (timeLeft <= 0) {
       clearInterval(timer);
       if (currentPhase === 1) {
@@ -46,7 +45,7 @@ const ContainerSpeaking = ({ questions, handleAnswerChange }) => {
       {questions.map((question) => {
         if (question.questionType === 'Picture') {
           return (
-            <Picture
+            <Image
               key={question.questionId}
               question={question}
               saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}

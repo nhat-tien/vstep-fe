@@ -1,9 +1,28 @@
 import React, { useState } from 'react';
-import Audio from '../../QuestionType/Audio/Audio';
-import MultipleChoice from '../../QuestionType/MultipleChoice/MultipleChoice';
+import Audio from '../../QuestionType/Audio';
+import MultipleChoice from '../../QuestionType/MultipleQuestion';
+import { useEffect } from 'react';
+import Image from '../../QuestionType/Image';
 
-const ContainerListen = ({ questions, handleAnswerChange }) => {
+const ContainerListen = ({ questions = [] , handleAnswerChange, skill, part }) => {
   const [audioPlayed, setAudioPlayed] = useState(false);
+  const [answers, setAnswers] = useState({});
+
+  useEffect(() => {
+    const savedAnswers = localStorage.getItem(`answered-${skill}-${part}`);
+    console.log('Storage trong Container: ',savedAnswers);
+    if (savedAnswers) {
+      try {
+        const parsedAnswers = JSON.parse(savedAnswers);
+        if (parsedAnswers) {
+          console.log("Storage: ", parsedAnswers);
+          setAnswers(parsedAnswers);
+        }
+      } catch (error) {
+        console.error("Lỗi trong lúc parse file json:", error);
+      }
+    }
+  }, [skill, part])
 
   const handleAudioEnd = () => {
     setAudioPlayed(true);
@@ -12,7 +31,16 @@ const ContainerListen = ({ questions, handleAnswerChange }) => {
   return (
     <div className="container-listen">
       {questions.map((question) => {
-        if (question.questionType === 'Audio' && !audioPlayed) {
+        if (question.questionType === 'image') {
+            return (
+            <Image 
+              key={question.questionId}
+              question={question}
+            />
+          );
+        }
+
+        if (question.questionType === 'audio' && !audioPlayed) {
           return (
             <Audio
               key={question.questionId}
@@ -23,17 +51,18 @@ const ContainerListen = ({ questions, handleAnswerChange }) => {
           );
         }
 
-        if (question.questionType === 'MultipleChoice') {
+        if (question.questionType === 'select') {
           return (
             <MultipleChoice
               key={question.questionId}
               question={question}
+              selectedAnswer={answers[question.questionId]} 
               saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
             />
           );
         }
 
-        return null; // Không hiển thị gì nếu đã nghe xong audio hoặc loại câu hỏi không khớp
+        return null;
       })}
     </div>
   );

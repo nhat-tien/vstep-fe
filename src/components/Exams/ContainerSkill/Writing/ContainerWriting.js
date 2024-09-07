@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../../QuestionType/Text/Text';
+import Text from '../../QuestionType/Text';
 
 const ContainerWriting = ({ questions, handleAnswerChange }) => {
   return (
