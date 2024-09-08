@@ -1,6 +1,6 @@
 // components/ContainerSpeaking.js
 import React, { useState, useEffect } from 'react';
-import Text from '../../QuestionType/Text';
+import Text from '../../QuestionType/TextType/Text';
 import Image from 'next/image';
 
 const ContainerSpeaking = ({ questions, handleAnswerChange }) => {

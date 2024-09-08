@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Exams/Exams-UI/Header/Header';
 import Footer from '@/components/Exams/Exams-UI/Footer/Footer';
 import { useRouter } from 'next/navigation';
+import styles from '@/app/exam/styles.module.css'
 
 const MainLayout = ({ children }) => {
   const router = useRouter();
@@ -58,7 +59,7 @@ const MainLayout = ({ children }) => {
   }, [router.asPath]);
 
   return (
-    <div>
+    <div className={styles["layout"]}>
       <Header timeRemaining={timeRemaining} />
       <main>{children}</main>
       <Footer 

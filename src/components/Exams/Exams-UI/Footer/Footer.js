@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Footer/styles.module.css';
 
-
 const Footer = ({ currentSkill, currentSkillIndex }) => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(null);
@@ -12,6 +11,13 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
   useEffect(() => {
     // Reset activeButton khi skill thay đổi
     setActiveButton(null);
+    
+    // Thiết lập nút đầu tiên của skill hiện tại là active
+    const firstPart = skills[currentSkill][0];
+    setActiveButton(firstPart);
+
+    // Điều hướng đến phần đầu tiên khi component load
+    navigateToPart(currentSkill, firstPart);
   }, [currentSkill]);
 
   const handleClick = (partNumber) => {
@@ -22,16 +28,11 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
     router.push(`/exam/${skill}/${partNumber}`);
   };
 
-  const handleSave = () => {
-
-  };
-
-
   const skills = {
-    listening: 3,
-    reading: 4,
-    writing: 2,
-    speaking: 1,
+    listening: [1, 2, 3], 
+    reading: [1, 2, 3, 4],
+    writing: [1, 2],
+    speaking: [1]
   };
 
   const skillTimes = {
@@ -41,45 +42,41 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
     writing: 50,
   };
 
-  // Kiểm tra xem skill có phải là currentSkill không
   const isSkillUnlocked = (index) => {
     return index === currentSkillIndex;
   };
 
   return (
     <footer className={styles["footer-container"]}>
-  <div className={styles["footer"]}>
-    <div className={styles["skills-container"]}>
-      {Object.keys(skills).map((skill, index) => (
-        <div key={skill} className={`${styles["skill-section"]} ${isSkillUnlocked(index) ? '' : styles['disabled']}`}>
-          {/* Danh sách các nút Part lên trên */}
-          <div className={styles["button-row"]}>
-            {Array.from({ length: skills[skill] }, (_, i) => i + 1).map(part => (
-              <button
-                key={part}
-                className={`${styles['toggle-button']} ${isSkillUnlocked(index) && activeButton === part ? styles['active'] : ''} ${!isSkillUnlocked(index) ? styles['disabled-button'] : ''}`}
-                onClick={() => isSkillUnlocked(index) && navigateToPart(skill, part)}
-                onMouseDown={() => handleClick(part)}
-                disabled={!isSkillUnlocked(index)}
-              >
-                PART {part}
-              </button>
-            ))}
-          </div>
-          {/* Tiêu đề Skill xuống dưới */}
-          <div className={styles["phase-header"]}>
-            <h1 className={styles["phase-title"]}>
-              {`${skill.toUpperCase()} - ${skillTimes[skill]}`}
-            </h1>
-          </div>
+      <div className={styles["footer"]}>
+        <div className={styles["skills-container"]}>
+          {Object.keys(skills).map((skill, index) => (
+            <div key={skill} className={`${styles["skill-section"]} ${isSkillUnlocked(index) ? '' : styles['disabled']}`}>
+              {/* Danh sách các nút Part lên trên */}
+              <div className={styles["button-row"]}>
+                {skills[skill].map(part => (
+                  <button
+                    key={part}
+                    className={`${styles['toggle-button']} ${isSkillUnlocked(index) && activeButton === part ? styles['active'] : ''} ${!isSkillUnlocked(index) ? styles['disabled-button'] : ''}`}
+                    onClick={() => isSkillUnlocked(index) && navigateToPart(skill, part)}
+                    onMouseDown={() => handleClick(part)}
+                    disabled={!isSkillUnlocked(index)}
+                  >
+                    PART {part}
+                  </button>
+                ))}
+              </div>
+              {/* Tiêu đề Skill xuống dưới */}
+              <div className={styles["phase-header"]}>
+                <h1 className={styles["phase-title"]}>
+                  {`${skill.toUpperCase()} - ${skillTimes[skill]}`}
+                </h1>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-    <button className={styles['saved-button']}
-            onClick={handleSave}
-            >Lưu</button>
-  </div>
-</footer>
+      </div>
+    </footer>
   );
 };
 

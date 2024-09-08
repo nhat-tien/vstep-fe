@@ -1,23 +1,57 @@
+/* Đảm bảo phần tử header nằm cố định trên màn hình */
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #282c34;
-  color: #fff;
-  border-bottom: 2px solid #61dafb;
+  position: fixed; /* Đặt vị trí cố định trên màn hình */
+  top: 0; /* Khoảng cách từ trên cùng của màn hình */
+  left: 0; /* Khoảng cách từ bên trái của màn hình */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
+  background-color: rgb(54, 54, 226); /* Nền trắng với độ trong suốt nhẹ */
+  color: #333; /* Màu chữ */
+  padding: 10px 20px; /* Khoảng cách bên trong */
+  border-bottom: 1px solid #ddd; /* Đường viền dưới để phân cách với nội dung khác */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+  display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các phần tử con */
+  justify-content: space-between; /* Căn chỉnh các phần tử con cách xa nhau */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
 }
 
-.title {
-  font-size: 24px;
-  margin-bottom: 10px;
+.user-name {
+  font-size: 18px; /* Kích thước chữ cho tên người dùng */
+  font-family: 'Times New Roman', Times, serif; /* Font chữ */
+  flex: 1; /* Làm cho tên người dùng chiếm không gian còn lại bên trái */
+  color: white;
+}
+
+.timer-container {
+  display: flex; /* Đặt chế độ hiển thị là flex để căn giữa đồng hồ */
+  justify-content: center; /* Căn giữa đồng hồ theo chiều ngang */
+  flex: 1; /* Đảm bảo container này chiếm không gian còn lại */
 }
 
 .timer {
-  font-size: 48px;
-  font-weight: bold;
-  background: #1c1e22;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-size: 16px; /* Kích thước chữ cho thời gian */
+  font-family: Arial, sans-serif; /* Font chữ */
+  display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các số */
+  align-items: center; /* Căn giữa các số theo chiều dọc */
+  position: relative;
+  left: -500px;
+}
+
+.timer span {
+  display: inline-block; /* Để các số nằm trên cùng một hàng */
+  width: 40px; /* Chiều rộng của ô vuông */
+  height: 40px; /* Chiều cao của ô vuông */
+  background-color: orange; /* Màu nền của ô vuông */
+  color: white; /* Màu chữ */
+  font-size: 18px; /* Kích thước chữ */
+  font-weight: bold; /* Đậm chữ */
+  text-align: center; /* Căn giữa chữ */
+  line-height: 40px; /* Căn giữa chữ theo chiều dọc */
+  margin: 0 2px; /* Khoảng cách giữa các ô vuông */
+  border-radius: 5px; /* Góc bo tròn cho ô vuông */
+}
+
+.colon {
+  font-size: 24px; /* Kích thước chữ cho dấu ":" */
+  margin: 0 8px; /* Khoảng cách giữa dấu ":" và các số */
 }
