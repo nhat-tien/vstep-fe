@@ -36,10 +36,10 @@ export async function login({ email, password }) {
 
 export async function logout() {
   try {
-    const res = await http.del("/logout");
-    if (res["status"] == 200) {
-      cookies().delete("access_token");
-    }
+     const res = await http.del("/logout");
+      if (res["status"] == 200) {
+        cookies().delete("access_token");
+      }
   } catch (e) {
     throw new Error(e);
   }
