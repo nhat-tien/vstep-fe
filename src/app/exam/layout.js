@@ -9,13 +9,13 @@ const MainLayout = ({ children }) => {
   const router = useRouter();
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-  const skillOrder = ['listening', 'speaking', 'reading', 'writing'];
+  const skillOrder = ['listening', 'reading', 'writing', 'speaking'];
   const skillConfig = {
     //Phần chỉnh time và số lượng part.
-    listening: { partNumber: 3, totalDurationExamTime: 45*60 },
-    reading: { partNumber: 4, totalDurationExamTime: 45*60  },
-    writing: { partNumber: 2, totalDurationExamTime: 45*60  },
-    speaking: { partNumber: 1, totalDurationExamTime: 45*60  },
+    listening: { partNumber: 3, totalDurationExamTime: 1},
+    reading: { partNumber: 4, totalDurationExamTime: 10 },
+    writing: { partNumber: 2, totalDurationExamTime: 10  },
+    speaking: { partNumber: 1, totalDurationExamTime: 10  },
   };
 
   useEffect(() => {

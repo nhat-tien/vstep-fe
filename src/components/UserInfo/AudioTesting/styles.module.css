@@ -1,17 +1,10 @@
 .audio-testing {
-  background-color: #0078d7;
-  border-radius: 10px;
-  margin-top: 20px;
   width: 350px;
   transform: scale(1.25);
-  position: relative;
-  top: -242px;
-  left: 75px;
 }
 .step-two {
-  position: relative;
+  position: fixed;
   left: -50px;
-  margin-bottom: 15px;
 }
 .audio-testing p {
   font-family:
@@ -33,11 +26,30 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+.p1 {
+  position: fixed;
+  top: 50px;
+}
 
+.p2 {
+  position: fixed;
+  top: 170px;
+}
+
+.p3 {
+  position: fixed;
+  top: 200px;
+}
+
+.p4 {
+  position: fixed;
+  top: 380px;
+}
 .audio-testing audio {
   width: 90%;
   margin: 10px 0;
-  position: relative;
+  top: 100px;
+  position: fixed;
 }
 
 .mic-check {
@@ -45,7 +57,7 @@
   justify-content: space-between;
   margin-top: 10px;
   position: relative;
-  top: 100px;
+  top: 340px;
 }
 
 .mic-check-start button {
@@ -57,18 +69,16 @@
   font-size: 16px;
   transition: background-color 0.3s;
 }
-.mic-check {
-  position: relative;
-  top: 70px;
-  left: 10px;
+.audio-check {
+  position: fixed;
 }
 .mic-check-end button {
   background-color: #0096ff;
-  position: relative;
-  left: -40px;
+  position: fixed;
+  left: 190px;
   color: #fff;
   border: none;
-  padding: 10px 33px;
+  padding: 10px 40px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
@@ -88,7 +98,25 @@
 
 .audio-check audio {
   width: 90%;
-  margin: 10px 0;
-  position: relative;
-  top: -45px;
+  position: fixed;
+  top: 250px;
+}
+
+.blinking {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0% {
+    background-color: red;
+    opacity: 1;
+  }
+  50% {
+    background-color: red;
+    opacity: 0.5;
+  }
+  100% {
+    background-color: red;
+    opacity: 1;
+  }
 }

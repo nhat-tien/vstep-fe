@@ -12,8 +12,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  localStorage.clear();
-
 const handlelogin = async (e) => {
     e.preventDefault();
     setLoading(true);

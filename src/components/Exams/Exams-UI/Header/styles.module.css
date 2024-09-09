@@ -4,7 +4,7 @@
   top: 0; /* Khoảng cách từ trên cùng của màn hình */
   left: 0; /* Khoảng cách từ bên trái của màn hình */
   width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
-  background-color: rgb(54, 54, 226); /* Nền trắng với độ trong suốt nhẹ */
+  background-color: #0078d7; /* Nền trắng với độ trong suốt nhẹ */
   color: #333; /* Màu chữ */
   padding: 10px 20px; /* Khoảng cách bên trong */
   border-bottom: 1px solid #ddd; /* Đường viền dưới để phân cách với nội dung khác */
@@ -39,16 +39,16 @@
 
 .timer span {
   display: inline-block; /* Để các số nằm trên cùng một hàng */
-  width: 40px; /* Chiều rộng của ô vuông */
+  width: 20px; /* Chiều rộng của ô vuông */
   height: 40px; /* Chiều cao của ô vuông */
-  background-color: orange; /* Màu nền của ô vuông */
+  background-color: rgb(255, 115, 0); /* Màu nền của ô vuông */
   color: white; /* Màu chữ */
   font-size: 18px; /* Kích thước chữ */
   font-weight: bold; /* Đậm chữ */
   text-align: center; /* Căn giữa chữ */
   line-height: 40px; /* Căn giữa chữ theo chiều dọc */
   margin: 0 2px; /* Khoảng cách giữa các ô vuông */
-  border-radius: 5px; /* Góc bo tròn cho ô vuông */
+  border-radius: 3px; /* Góc bo tròn cho ô vuông */
 }
 
 .colon {

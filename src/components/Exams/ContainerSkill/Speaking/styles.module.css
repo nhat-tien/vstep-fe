@@ -1,0 +1,54 @@
+/* styles.module.css */
+
+.container-Speaking-Wrapper {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
+    min-height: 100vh; /* Đảm bảo container chiếm ít nhất chiều cao của viewport */
+}
+
+.container-Speaking {
+    position: relative;
+    width: 1000px; 
+    overflow-y: auto; /* Cho phép cuộn */
+    background-color: white; /* Đặt màu nền */
+    color: black; /* Đặt màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+    margin-bottom: 50px; /* Khoảng trống để tránh bị footer che */
+    border: 1px solid #ddd; /* Viền nhẹ cho container */
+    border-radius: 8px; /* Góc bo tròn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+}
+
+.timer {
+    margin-bottom: 20px; /* Khoảng cách dưới của timer */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold; /* Đậm chữ */
+}
+
+.recordingIndicator {
+    margin-top: 20px; /* Khoảng cách trên của indicator */
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.recordingIndicator button {
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    font-size: 16px; /* Kích thước chữ của nút */
+    background-color: #007bff; /* Màu nền của nút */
+    color: white; /* Màu chữ của nút */
+    border: none; /* Xóa viền nút */
+    border-radius: 4px; /* Góc bo tròn nút */
+    cursor: pointer; /* Hiển thị con trỏ tay khi di chuột qua */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+}
+
+.recordingIndicator button:hover {
+    background-color: #0056b3; /* Màu nền của nút khi hover */
+}
+
+.image {
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá kích thước của container */
+    height: auto; /* Giữ tỷ lệ khung hình */
+    margin-bottom: 20px; /* Khoảng cách dưới của hình ảnh */
+}

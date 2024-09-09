@@ -21,7 +21,7 @@ const MultipleChoice = ({ question, selectedAnswer, saveAnswer, questionNumber }
 
   return (
     <div className= {styles["multiple-choice"]}>
-      <h3>Question {questionNumber}: {question.text}</h3>
+      <h3 className={styles["question"]}> Câu {questionNumber}: {question.text}</h3>
       <ul>
         {question.selectOption && question.selectOption.length > 0 ? (
           question.selectOption.map((option, index) => (

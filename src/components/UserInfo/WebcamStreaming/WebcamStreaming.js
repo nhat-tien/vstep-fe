@@ -1,6 +1,3 @@
-"use client"
-import React, { useRef, useEffect } from "react";
-
 const WebcamStreaming = ({ className }) => {
   const videoRef = useRef(null);
 
@@ -29,7 +26,7 @@ const WebcamStreaming = ({ className }) => {
     };
   }, []);
 
-  return <video ref={videoRef} autoPlay />;
+  return <video ref={videoRef} className={className} autoPlay muted />;
 };
 
 export default WebcamStreaming;

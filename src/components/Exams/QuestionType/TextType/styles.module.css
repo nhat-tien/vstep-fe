@@ -1,0 +1,14 @@
+.text-question-container {
+    border: 1px solid black; /* Đường viền đen đơn giản quanh câu hỏi */
+    padding: 10px; /* Khoảng cách bên trong giữa nội dung và viền */
+    margin: 20px 0; /* Khoảng cách phía trên và dưới để tạo không gian giữa các câu hỏi */
+    background-color: transparent; /* Nền trong suốt */
+  }
+  
+  .text-question-container p {
+    margin: 0; /* Xóa khoảng cách mặc định của đoạn văn */
+    font-family: Arial, sans-serif; /* Font chữ đơn giản */
+    font-size: 16px; /* Kích thước chữ phù hợp */
+    color: #000; /* Màu chữ đen */
+  }
+  

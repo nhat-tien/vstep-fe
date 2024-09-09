@@ -41,26 +41,33 @@ const AudioTesting = () => {
         width={400}
         height={40.25}
       />
+      
       <p className={styles["p1"]}>
         - Bước 1: Đeo tai nghe và nghe một đoạn âm thanh phía dưới.
       </p>
-      <audio controls className={styles["audio"]}>
+      <div className={styles['audio']}>
+      <audio controls>
         <source
           src="/audio/Tiếng bocchi mhu mhu lofi cực chill.mp3"
           type="audio/mp3"
-        />
+        /> 
       </audio>
-      <p>- Bước 2: Để mic sát miệng.</p>
-      <p>- Bước 3: Nhấn vào nút "thu âm" để thu âm.</p>
+      </div>
+      <p className={styles["p2"]} >- Bước 2: Để mic sát miệng.</p>
+      <p className={styles["p3"]}>- Bước 3: Nhấn vào nút "thu âm" để thu âm.</p>
       <div className={styles["mic-check"]}>
         <div className={styles["mic-check-start"]}>
-          <button onClick={handleStartRecording} disabled={recordingAudio}>
+          <button 
+            onClick={handleStartRecording} 
+            disabled={recordingAudio}
+            className={recordingAudio ? styles.blinking : ""}
+          >
             Ghi âm
           </button>
         </div>
         <div className={styles["mic-check-end"]}>
           <button onClick={handleStopRecording} disabled={!recordingAudio}>
-            Nghe lại
+            Dừng
           </button>
         </div>
       </div>
@@ -69,7 +76,7 @@ const AudioTesting = () => {
           <audio controls src={audioURL}></audio>
         </div>
       </div>
-      <p>
+      <p className={styles["p4"]}>
         - Bước 4: Nếu không nghe được giọng nói của mình vui lòng thông báo cho
         giám thị.
       </p>

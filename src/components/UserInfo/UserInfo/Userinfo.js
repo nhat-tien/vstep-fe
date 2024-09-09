@@ -58,12 +58,15 @@ const UserInfo = () => {
   };
 
   return (
+  <div className={styles['checking']}>
     <div className={styles["user-info"]}>
       <div className={styles["profile-checking"]}>
         <div className={styles["avatar-container"]}>
           <img src={avatar} alt="Avatar" className={styles.avatar} />
           {showWebcam && webcamAvailable && (
-            <WebcamStreaming className={styles["avatar-webcam"]} />
+              <div className={styles["webcam-container"]}>
+                <WebcamStreaming className={styles["avatar-webcam"]} />
+              </div>
           )}
         </div>
         <button
@@ -145,6 +148,7 @@ const UserInfo = () => {
         <p>- Để chuyển part hay kỹ năng, thí sinh click vào nút “TIẾP TỤC”.</p>
       </div>
     </div>
+  </div>
   );
 };
 

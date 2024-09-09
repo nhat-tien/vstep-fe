@@ -15,6 +15,12 @@
     margin-bottom: 8px; /* Khoảng cách giữa các tùy chọn */
   }
   
+  .question {
+    position: relative;
+    left: -50px;
+    font-size: 20px;
+  }
+
   .radio-button-label input[type="radio"] {
     margin-right: 8px; /* Khoảng cách giữa radio button và văn bản */
     vertical-align: middle; /* Căn chỉnh theo chiều dọc với văn bản */
@@ -32,7 +38,7 @@
   }
   
   .radio-button:checked {
-    background-color: #007bff; /* Màu xanh khi được chọn */
-    border-color: #007bff; /* Thay đổi màu viền khi được chọn */
+    background-color: #0078d7; /* Màu xanh khi được chọn */
+    border-color: #0078d7; /* Thay đổi màu viền khi được chọn */
   }
   

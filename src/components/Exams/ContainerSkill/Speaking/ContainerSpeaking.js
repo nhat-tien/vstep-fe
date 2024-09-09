@@ -1,11 +1,12 @@
-// components/ContainerSpeaking.js
+"use client";
 import React, { useState, useEffect } from 'react';
 import Text from '../../QuestionType/TextType/Text';
 import Image from 'next/image';
+import styles from '@/components/Exams/ContainerSkill/Speaking/styles.module.css';
 
-const ContainerSpeaking = ({ questions, handleAnswerChange }) => {
+const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
   const [currentPhase, setCurrentPhase] = useState(1); // Phase 1 or Phase 2
-  const [timeLeft, setTimeLeft] = useState(10); // thời gian cho mỗi phase (tùy chỉnh theo nhu cầu)
+  const [timeLeft, setTimeLeft] = useState(10); // Thời gian cho mỗi phase (tùy chỉnh theo nhu cầu)
   const [isRecording, setIsRecording] = useState(false);
 
   useEffect(() => {
@@ -16,62 +17,64 @@ const ContainerSpeaking = ({ questions, handleAnswerChange }) => {
     if (timeLeft <= 0) {
       clearInterval(timer);
       if (currentPhase === 1) {
-        setCurrentPhase(2); // Chuyển sang phase 2
-        setTimeLeft(10); // Thời gian cho phase 2
-        setIsRecording(true); // Bắt đầu thu âm
+        setCurrentPhase(2); 
+        setIsRecording(true); 
       } else {
-        setIsRecording(false); // Dừng thu âm khi hết phase 2
+        setIsRecording(false); 
       }
     }
 
-    return () => clearInterval(timer); // Xóa interval khi component unmount hoặc khi timeLeft thay đổi
+    return () => clearInterval(timer); 
   }, [timeLeft, currentPhase]);
 
   const handleRecordingStop = () => {
-    // Dừng thu âm
     setIsRecording(false);
   };
 
   return (
-    <div className="container-speaking">
-      <div className="timer">
-        {currentPhase === 1 ? (
-          <p>Prepare to speak: {timeLeft} seconds</p>
-        ) : (
-          <p>Recording: {timeLeft} seconds</p>
+    <div className={styles['container-Speaking-Wrapper']}>
+      <div className={styles['container-Speaking']}>
+        <div className={styles['timer']}>
+          {currentPhase === 1 ? (
+            <p>Prepare to speak: {timeLeft} seconds</p>
+          ) : (
+            <p>Recording: {timeLeft} seconds</p>
+          )}
+        </div>
+
+        {questions.map((question, index) => {
+          if (question.questionType === 'Picture') {
+            return (
+              <Image
+                key={question.questionId}
+                src={question.imageUrl} 
+                alt={`Question ${question.questionId}`}
+                width={500} 
+                height={300}
+                className={styles['image']}
+              />
+            );
+          }
+
+          if (question.questionType === 'Text') {
+            return (
+              <Text
+                key={question.questionId}
+                question={question}
+                saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
+              />
+            );
+          }
+
+          return null;
+        })}
+
+        {isRecording && (
+          <div className={styles.recordingIndicator}>
+            <button onClick={handleRecordingStop}>Stop Recording</button>
+          </div>
         )}
       </div>
-
-      {questions.map((question) => {
-        if (question.questionType === 'Picture') {
-          return (
-            <Image
-              key={question.questionId}
-              question={question}
-              saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
-            />
-          );
-        }
-
-        if (question.questionType === 'Text') {
-          return (
-            <Text
-              key={question.questionId}
-              question={question}
-              saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
-            />
-          );
-        }
-
-        return null; // Không hiển thị gì nếu loại câu hỏi không khớp
-      })}
-
-      {isRecording && (
-        <div className="recording-indicator">
-          {/* Khu vực cho nút và biểu tượng thu âm */}
-          <button onClick={handleRecordingStop}>Stop Recording</button>
-        </div>
-      )}
     </div>
   );
 };

@@ -4,8 +4,18 @@
   align-items: center;
   color: white;
   position: relative;
+
   top: -60px;
 }
+.checking {
+  position: fixed; /* Đảm bảo div bao phủ toàn bộ màn hình */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Độ rộng 100% theo viewport width */
+  height: 100vh; /* Chiều cao 100% theo viewport height */
+  background-color: #007bff; /* Màu nền xanh */
+}
+
 .profile-checking {
   transform: scale(1.1);
   position: relative;
@@ -27,6 +37,16 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.webcam-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .avatar-webcam {
@@ -54,7 +74,7 @@
 }
 
 .avatar-button:hover {
-  background-color: #240506; /* Darker red on hover */
+  background-color: #240506;
 }
 
 .info {
@@ -92,11 +112,10 @@
 }
 
 .exam-info {
-  position: relative;
-  left: -500px;
-  top: -13px;
+  position: fixed;
+  bottom: 345px;
+  right: 50px;
   transform: scale(1.25);
-  background-color: #0078d7;
   color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -159,14 +178,15 @@
 }
 
 .note {
+  position: fixed;
+  top: 396px;
+  right: 300px;
   color: #fff;
   width: 300px;
   margin-bottom: 20px;
   position: absolute;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  left: 600px;
-  bottom: 411px;
   transform: scale(1.25);
 }
 

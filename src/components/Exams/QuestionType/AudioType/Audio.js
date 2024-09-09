@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import styles from './styles.module.css'; 
 
 const Audio = ({ question, onEnd }) => {
   const audioRef = useRef(null);
@@ -10,7 +11,7 @@ const Audio = ({ question, onEnd }) => {
     const preventSeek = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      audioRef.current.currentTime = 0;
+      audio.currentTime = 0;
     };
 
     audio.addEventListener('seeking', preventSeek);
@@ -21,16 +22,9 @@ const Audio = ({ question, onEnd }) => {
   }, []);
 
   const handlePlay = () => {
-    if (audioRef.current) {
+    if (audioRef.current && !isPlaying) {
       audioRef.current.play();
       setIsPlaying(true);
-    }
-  };
-
-  const handlePause = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
     }
   };
 
@@ -42,19 +36,23 @@ const Audio = ({ question, onEnd }) => {
   };
 
   return (
-    <div>
+    <div className={styles['audioContainer']}>
+      {/* Thanh audio được custom CSS */}
       <audio
         ref={audioRef}
         src={question.fileUrl}
         onEnded={handleEnded}
         preload="auto"
-        // Disable default controls to hide progress bar
+        controls
+        className={styles['audioPlayer']}
       />
-      {isPlaying ? (
-        <button onClick={handlePause}>Pause</button>
-      ) : (
-        <button onClick={handlePlay}>Play</button>
-      )}
+      <button 
+        className={`${styles['playButton']} ${isPlaying ? styles.playing : ''}`} 
+        onClick={handlePlay}
+        disabled={isPlaying}
+      >
+        Play
+      </button>
     </div>
   );
 };

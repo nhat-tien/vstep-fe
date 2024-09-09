@@ -1,0 +1,43 @@
+/* styles.module.css */
+
+.container-Writing-Wrapper {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
+    min-height: 100vh; /* Đảm bảo container chiếm ít nhất chiều cao của viewport */
+}
+
+.container-Writing {
+    position: relative;
+    width: 1000px; 
+    overflow-y: auto; /* Cho phép cuộn */
+    background-color: white; /* Đặt màu nền */
+    color: black; /* Đặt màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+    margin-bottom: 50px; /* Khoảng trống để tránh bị footer che */
+    border: 1px solid #ddd; /* Viền nhẹ cho container */
+    border-radius: 8px; /* Góc bo tròn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+}
+
+.writing-box {
+    margin-bottom: 20px; /* Khoảng cách giữa các khối câu hỏi */
+}
+
+.textarea {
+    width: 100%; /* Chiều rộng của textarea bằng 100% container */
+    padding: 10px; /* Khoảng cách bên trong */
+    font-size: 16px; /* Kích thước chữ */
+    border: 1px solid #ddd; /* Viền nhẹ cho textarea */
+    border-radius: 4px; /* Góc bo tròn */
+    box-sizing: border-box; /* Bao gồm padding và border trong kích thước tổng cộng */
+    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+    margin-top: 10px; /* Khoảng cách trên của textarea */
+    outline: none; /* Xóa đường viền khi focus */
+}
+
+.textarea:focus {
+    border-color: #007bff; /* Màu viền khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng bóng khi focus */
+}

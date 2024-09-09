@@ -4,6 +4,7 @@ import Audio from '../../QuestionType/AudioType/Audio';
 import MultipleChoice from '../../QuestionType/SelectType/MultipleQuestion';
 import Image from '../../QuestionType/ImageType/Image';
 import styles from '@/components/Exams/ContainerSkill/Listening/styles.module.css';
+import Text from '../../QuestionType/TextType/Text';
 
 const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) => {
   const [audioPlayed, setAudioPlayed] = useState(false);
@@ -30,8 +31,8 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
   }, [answers]);
 
   useEffect(() => {
-    // Reset số câu hỏi trắc nghiệm khi `part` thay đổi
-    setAnsweredQuestionsCount(0); // Reset câu đã chọn khi part thay đổi
+    // Reset số câu hỏi đã chọn khi `part` thay đổi
+    setAnsweredQuestionsCount(0); 
   }, [part]);
 
   const handleAudioEnd = () => {
@@ -39,6 +40,7 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
   };
 
   const totalQuestionsCount = questions.length; // Tổng số câu hỏi từ dữ liệu
+  let multipleChoiceCount = 0; // Khởi tạo bộ đếm câu trắc nghiệm ngoài render
 
   return (
     <div className={styles["container-listen-wrapper"]}>
@@ -47,7 +49,7 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
         <div className={styles["question-summary"]}>
           <p>Đã chọn: {answeredQuestionsCount} / {totalQuestionsCount} câu</p>
         </div>
-        {questions.map((question, index) => {
+        {questions.map((question) => {
           if (question.questionType === 'image') {
             return (
               <Image 
@@ -63,12 +65,14 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
                 key={question.questionId}
                 question={question}
                 onEnd={handleAudioEnd}
-                saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
               />
             );
           }
 
           if (question.questionType === 'select') {
+            // Tăng bộ đếm câu hỏi trắc nghiệm khi gặp câu hỏi trắc nghiệm
+            multipleChoiceCount += 1;
+            
             return (
               <MultipleChoice
                 key={question.questionId}
@@ -78,7 +82,16 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
                   handleAnswerChange(question.questionId, answer);
                   setAnswers(prevAnswers => ({ ...prevAnswers, [question.questionId]: answer }));
                 }}
-                questionNumber={index + 1} // Cập nhật số câu hỏi trắc nghiệm
+                questionNumber={multipleChoiceCount} // Truyền số câu hỏi trắc nghiệm
+              />
+            );
+          }
+
+          if (question.questionType === 'para') {
+            return (
+              <Text
+                key={question.questionId}
+                question={question}
               />
             );
           }
