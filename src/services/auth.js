@@ -2,6 +2,7 @@
 
 import * as http from "@/lib/http";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function login({ email, password }) {
   try {
@@ -38,6 +39,7 @@ export async function logout() {
     const res = await http.del("/logout");
     if (res["status"] == 200) {
       cookies().delete("access_token");
+      redirect("/");
     }
   } catch (e) {
     throw new Error("Fail to logout");

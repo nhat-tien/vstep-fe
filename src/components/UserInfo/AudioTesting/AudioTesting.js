@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
+import Image from "next/image";
 import styles from "@/components/UserInfo/AudioTesting/styles.module.css";
 
 const AudioTesting = () => {
@@ -34,31 +35,31 @@ const AudioTesting = () => {
 
   return (
     <div className={styles["audio-testing"]}>
-      <img
+      <Image
         className={styles["step-two"]}
         src="/images/Group 10.svg"
         alt="Bước 2"
-        width={400}
-        height={40.25}
+        width={270}
+        height={40}
       />
-      
+
       <p className={styles["p1"]}>
-        - Bước 1: Đeo tai nghe và nghe một đoạn âm thanh phía dưới.
+        Bước 1: Đeo tai nghe và nghe một đoạn âm thanh phía dưới.
       </p>
-      <div className={styles['audio']}>
-      <audio controls>
-        <source
-          src="/audio/Tiếng bocchi mhu mhu lofi cực chill.mp3"
-          type="audio/mp3"
-        /> 
-      </audio>
+      <div className={styles["audio"]}>
+        <audio controls>
+          <source
+            src="/audio/Tiếng bocchi mhu mhu lofi cực chill.mp3"
+            type="audio/mp3"
+          />
+        </audio>
       </div>
-      <p className={styles["p2"]} >- Bước 2: Để mic sát miệng.</p>
-      <p className={styles["p3"]}>- Bước 3: Nhấn vào nút "thu âm" để thu âm.</p>
+      <p className={styles["p2"]}>Bước 2: Để mic sát miệng.</p>
+      <p className={styles["p3"]}>Bước 3: Nhấn vào nút "thu âm" để thu âm.</p>
       <div className={styles["mic-check"]}>
         <div className={styles["mic-check-start"]}>
-          <button 
-            onClick={handleStartRecording} 
+          <button
+            onClick={handleStartRecording}
             disabled={recordingAudio}
             className={recordingAudio ? styles.blinking : ""}
           >
@@ -77,7 +78,7 @@ const AudioTesting = () => {
         </div>
       </div>
       <p className={styles["p4"]}>
-        - Bước 4: Nếu không nghe được giọng nói của mình vui lòng thông báo cho
+        Bước 4: Nếu không nghe được giọng nói của mình vui lòng thông báo cho
         giám thị.
       </p>
     </div>
