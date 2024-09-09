@@ -1,16 +1,10 @@
 .audio-testing {
-  /* width: 350px; */
-  /* transform: scale(1.25); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
-  /* border: 1px solid black; */
+  gap: 0.3em;
 }
-.step-two {
-  /* position: fixed; */
-  /* left: -50px; */
-}
+
 .audio-testing p {
   color: #fff;
   width: 300px;
@@ -29,39 +23,10 @@
   margin-right: 5px;
 }
 
-.p1 {
-  /* position: fixed; */
-  /* top: 50px; */
-}
-
-.p2 {
-  /* position: fixed; */
-  /* top: 170px; */
-}
-
-.p3 {
-  /* position: fixed; */
-  /* top: 200px; */
-}
-
-.p4 {
-  /* position: fixed; */
-  /* top: 380px; */
-}
-.audio-testing audio {
-  /* width: 90%; */
-  /* margin: 10px 0; */
-  /* top: 100px; */
-  /* position: fixed; */
-}
-
 .mic-check {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  /* margin-top: 10px; */
-  /* position: relative; */
-  /* top: 340px; */
 }
 
 .mic-check-start button {
@@ -70,16 +35,11 @@
   border: none;
   padding: 10px 36px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   transition: background-color 0.3s;
-}
-.audio-check {
-  /* position: fixed; */
 }
 .mic-check-end button {
   background-color: #0096ff;
-  /* position: fixed; */
-  /* left: 190px; */
   color: #fff;
   border: none;
   padding: 10px 40px;
@@ -98,12 +58,6 @@
 .audio-check-end button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-.audio-check audio {
-  /* width: 90%; */
-  /* position: fixed; */
-  /* top: 250px; */
 }
 
 .blinking {

@@ -10,7 +10,6 @@ const CheckingPage = async () => {
   const { data } = await getProfile();
 
   return (
-    <div className={styles["body"]}>
       <div className={styles["checking"]}>
         <div className={styles["user-info"]}>
           <div className={styles["profile-checking"]}>
@@ -94,7 +93,6 @@ const CheckingPage = async () => {
         </div>
           </div>
         </div>
-      </div>
   );
 };
 

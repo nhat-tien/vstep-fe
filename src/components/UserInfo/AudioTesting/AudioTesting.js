@@ -56,6 +56,11 @@ const AudioTesting = () => {
       </div>
       <p className={styles["p2"]}>Bước 2: Để mic sát miệng.</p>
       <p className={styles["p3"]}>Bước 3: Nhấn vào nút "thu âm" để thu âm.</p>
+      <div className={styles["audio-check"]}>
+        <div>
+          <audio controls src={audioURL}></audio>
+        </div>
+      </div>
       <div className={styles["mic-check"]}>
         <div className={styles["mic-check-start"]}>
           <button
@@ -70,11 +75,6 @@ const AudioTesting = () => {
           <button onClick={handleStopRecording} disabled={!recordingAudio}>
             Dừng
           </button>
-        </div>
-      </div>
-      <div className={styles["audio-check"]}>
-        <div>
-          <audio controls src={audioURL}></audio>
         </div>
       </div>
       <p className={styles["p4"]}>

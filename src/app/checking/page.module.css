@@ -3,6 +3,7 @@
     justify-content: center; 
     align-items: center;
     background-color: #0078D7;
+    height: 100vh;
 }
 
 .user-info {
@@ -32,7 +33,7 @@
 .info {
   text-align: left;
   width: 100%;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .boldFirstPart {
@@ -127,4 +128,22 @@
   width: 100%;
   justify-content: center;
   gap: 8em;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#f57758 90%,#0000);
+  background: 
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
 }
