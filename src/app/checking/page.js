@@ -1,18 +1,13 @@
 import styles from "./page.module.css";
 import Image from "next/image";
-import { logout } from "@/services/auth";
 import getProfile from "@/services/getProfile";
 import WebcamStreaming from "@/components/UserInfo/WebcamStreaming/WebcamStreaming";
 import AudioTesting from "@/components/UserInfo/AudioTesting/AudioTesting";
 import Link from "next/link";
+import LogoutButton from "@/components/LogoutButton/LogoutButton";
 
 const CheckingPage = async () => {
   const { data } = await getProfile();
-
-  async function handleLogout() {
-    "use server";
-    logout();
-  }
 
   return (
     <div className={styles["body"]}>
@@ -45,12 +40,9 @@ const CheckingPage = async () => {
               >
                 Nhận đề
               </Link>
-              <button
-                onClick={handleLogout}
-                className={styles["logout-button"]}
-              >
-                Đăng xuất
-              </button>
+              <LogoutButton className={styles["logout-button"]} >
+                Đăng xuất 
+              </LogoutButton>
             </div>
         </div>
         <div className={styles["info-container"]}>

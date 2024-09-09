@@ -39,11 +39,11 @@ export async function logout() {
     const res = await http.del("/logout");
     if (res["status"] == 200) {
       cookies().delete("access_token");
-      redirect("/");
     }
   } catch (e) {
-    throw new Error("Fail to logout");
+    throw new Error(e);
   }
+  redirect("/");
 }
 
 export async function isLogin() {

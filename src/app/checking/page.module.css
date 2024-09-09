@@ -68,7 +68,6 @@
 }
 
 .logout-button {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0078d7;
   font-size: 17px;
   color: white;
@@ -86,7 +85,6 @@
 }
 
 .receive-exam-button {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #75b8fc;
   color: white;
   padding: 10px 42.5px;
