@@ -2,22 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
   background: #007bff;
 }
 .logo {
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 100px;
 }
 .title
 {
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 210px;
-  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1rem;
+  font-weight: 800;
   font-size: 50px;
 }
 .login-form {
@@ -56,6 +54,7 @@
 .form-group label {
 	font-family: var(--primary-font);
 	font-size: 0.7rem;
+  font-weight: 500;
 }
 .button-container {
   margin-top: 24px;
@@ -104,8 +103,4 @@
 .error.visible {
   visibility: visible;
   height: 20px;
-}
-.nhay-button
-{
-  position: relative;
 }

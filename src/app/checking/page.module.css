@@ -1,10 +1,149 @@
-.checking-page { /* Blue background */
-    font-family: Arial, sans-serif;
-}
-.body
-{   
+.body {   
     display: flex;
     justify-content: center; 
     align-items: center;
     background-color: #0078D7;
+    height: 100vh;
+}
+
+.user-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+
+.checking {
+  width: 100vw; /* Độ rộng 100% theo viewport width */
+  height: 100vh; /* Chiều cao 100% theo viewport height */
+  overflow: hidden;
+}
+
+.profile-checking {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4em;
+  margin-bottom: 1em;
+}
+
+
+.info {
+  text-align: left;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.boldFirstPart {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.SecondboldFirstPart {
+  font-weight: 800;
+}
+
+.info p {
+  margin: 10px;
+}
+
+.exam-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.exam-info p {
+  /* margin: 12px 0; */
+  font-size: 1rem;
+  padding-left: 1.5em;
+}
+
+.action-btn-group {
+  display: flex;
+  flex-direction: column;
+  min-width: max-content;
+  gap: 2em;
+}
+
+.logout-button {
+  background-color: #0078d7;
+  font-size: 17px;
+  color: white;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0.3px;
+  border-radius: 120px;
+  padding: 10px 35px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  background-color: #005bb5;
+}
+
+.receive-exam-button {
+  background-color: #75b8fc;
+  color: white;
+  padding: 10px 42.5px;
+  border: none;
+  border-radius: 120px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.receive-exam-button:hover {
+  background-color: #6197ce;
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.note {
+  max-width: 25ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.note p {
+  padding-left: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.note p::before {
+  content: "-";
+  display: block;
+  margin-right: 5px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+  gap: 8em;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#f57758 90%,#0000);
+  background: 
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
 }

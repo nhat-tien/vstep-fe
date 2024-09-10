@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import {login} from "@/services/auth";
 
 const Login = () => {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -16,7 +16,7 @@ const handlelogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await login({email: Email, password: Password});
+      const response = await login({email: email, password: password});
       if (response.ok) {
         router.push("/checking");
     } else {
@@ -28,11 +28,6 @@ const handlelogin = async (e) => {
       setLoading(false);
     }
   };
- 
-const handleNavigation = () => {
-    router.push("/checking");
-};
-
 
   return (
     <div className={styles["login-container"]}>
@@ -52,7 +47,7 @@ const handleNavigation = () => {
             <input //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
               type="email"
               id="email" //Đặt id cho giá trị này để sau này dễ dùng.
-              value={Email} //Gán giá trị của Value cho biến Email.
+              value={email} //Gán giá trị của Value cho biến Email.
               onChange={(e) => setEmail(e.target.value)} //Nếu người dùng thay đổi thông tin (biến value), Email sẽ thay đổi theo bằng useState.
               required //Buộc phải có.
             />
@@ -62,7 +57,7 @@ const handleNavigation = () => {
             <input
               type="password"
               id="password"
-              value={Password}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -77,7 +72,6 @@ const handleNavigation = () => {
           </div>
         </div>
       </form>
-      <button className={styles['nhay-button']} onClick={handleNavigation}>Nhảy</button>
     </div>
   );
 };
