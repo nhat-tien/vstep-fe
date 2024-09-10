@@ -69,7 +69,9 @@ const CheckingPage = async () => {
               part - 12 minutes
             </p>
           </div>
+          <div className={styles['audio-container']}>
           <AudioTesting />
+          </div>
           <div className={styles["note"]}>
             <Image
               className={styles["step-three"]}

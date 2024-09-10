@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
   const skillConfig = {
     //Phần chỉnh time và số lượng part.
     listening: { partNumber: 3, totalDurationExamTime: 1},
-    reading: { partNumber: 4, totalDurationExamTime: 10 },
+    reading: { partNumber: 4, totalDurationExamTime: 10*60 },
     writing: { partNumber: 2, totalDurationExamTime: 10  },
     speaking: { partNumber: 1, totalDurationExamTime: 10  },
   };

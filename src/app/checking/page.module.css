@@ -147,3 +147,30 @@
     60%{background-position:0%  50%, 50% 100%,100%   0%}
     80%{background-position:0%  50%, 50%  50%,100% 100%}
 }
+
+@media (max-width: 1920px) 
+{
+  .profile-checking{
+    position: relative;
+    top: -100px;
+  }
+
+  .exam-info{
+    position: relative;
+    left: -100px;
+    transform: scale(1.25);
+  }
+  
+  .audio-container{
+    transform: scale(1.25);
+    position: relative;
+    bottom: -27px;
+  }
+
+  .note {
+    transform: scale(1.25);
+    position: relative;
+    right: -100px;
+    bottom: -16px;
+  }
+}

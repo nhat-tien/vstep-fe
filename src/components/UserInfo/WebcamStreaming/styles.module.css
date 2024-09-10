@@ -1,12 +1,9 @@
-
 .avatar-container {
-  /* position: relative; */
-  /* width: 110px; */
-  /* height: 110px; */
-  /* text-align: center; */
-  /* margin-bottom: 20px; */
-  /* left: -250px; */
-  /* top: 100px; */
+  position: relative; 
+  width: 110px;
+  height: 110px; 
+  text-align: center; 
+  margin-bottom: 20px;
 }
 
 .avatar {
@@ -40,6 +37,8 @@
 
 .avatar-button {
   background-color: #cc3123;
+  position: relative;
+  left: 4px;
   color: white;
   border: none;
   border-radius: 5px;

@@ -53,7 +53,7 @@ const WebcamStreaming = ({ className }) => {
         <Image src={avatar} alt="Avatar" width={120} height={120} />
         {showWebcam && webcamAvailable && (
           <div className={styles["webcam-container"]}>
-            <video ref={videoRef} className={styles["avatar-webcam"]} autoPlay muted />;
+            <video ref={videoRef} className={styles["avatar-webcam"]} autoPlay muted />
           </div>
         )}
       </div>
