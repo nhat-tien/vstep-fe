@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
     listening: { partNumber: 3, totalDurationExamTime: 10 },
     reading: { partNumber: 4, totalDurationExamTime: 10 },
     writing: { partNumber: 2, totalDurationExamTime: 10 },
-    speaking: { partNumber: 1, totalDurationExamTime: 10 },
+    speaking: { partNumber: 1, totalDurationExamTime: 10*60 },
   };
 
   useEffect(() => {
