@@ -37,7 +37,7 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
 
   const skillTimes = {
     listening: 45,
-    speaking: 30,
+    speaking: 12,
     reading: 60,
     writing: 50,
   };

@@ -48,7 +48,7 @@ const WebcamStreaming = ({ className }) => {
   }, []);
 
   return (
-    <div className={styles.avatar}>
+    <div className={styles['avatar']}>
       <div className={styles["avatar-container"]}>
         <Image src={avatar} alt="Avatar" width={120} height={120} />
         {showWebcam && webcamAvailable && (

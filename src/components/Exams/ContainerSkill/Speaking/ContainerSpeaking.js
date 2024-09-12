@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Text from '../../QuestionType/TextType/Text';
-import Image from 'next/image';
+import Image from "../../QuestionType/ImageType/Image"
 import styles from '@/components/Exams/ContainerSkill/Speaking/styles.module.css';
 
 const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
@@ -43,25 +43,20 @@ const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
         </div>
 
         {questions.map((question, index) => {
-          if (question.questionType === 'Picture') {
+          if (question.questionType === 'image') {
             return (
               <Image
                 key={question.questionId}
-                src={question.imageUrl} 
-                alt={`Question ${question.questionId}`}
-                width={500} 
-                height={300}
-                className={styles['image']}
+                question={question}
               />
             );
           }
 
-          if (question.questionType === 'Text') {
+          if (question.questionType === 'para') {
             return (
               <Text
                 key={question.questionId}
                 question={question}
-                saveAnswer={(answer) => handleAnswerChange(question.questionId, answer)}
               />
             );
           }

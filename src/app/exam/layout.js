@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Header from '@/components/Exams/Exams-UI/Header/Header';
 import Footer from '@/components/Exams/Exams-UI/Footer/Footer';
 import { useRouter } from 'next/navigation';
-import styles from '@/app/exam/styles.module.css'
+import styles from '@/app/exam/styles.module.css';
 
 const MainLayout = ({ children }) => {
   const router = useRouter();
@@ -11,11 +11,10 @@ const MainLayout = ({ children }) => {
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
   const skillOrder = ['listening', 'reading', 'writing', 'speaking'];
   const skillConfig = {
-    //Phần chỉnh time và số lượng part.
-    listening: { partNumber: 3, totalDurationExamTime: 1},
-    reading: { partNumber: 4, totalDurationExamTime: 10*60 },
-    writing: { partNumber: 2, totalDurationExamTime: 10  },
-    speaking: { partNumber: 1, totalDurationExamTime: 10  },
+    listening: { partNumber: 3, totalDurationExamTime: 10 },
+    reading: { partNumber: 4, totalDurationExamTime: 10 },
+    writing: { partNumber: 2, totalDurationExamTime: 10 },
+    speaking: { partNumber: 1, totalDurationExamTime: 10 },
   };
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const MainLayout = ({ children }) => {
     return () => clearInterval(timer);
   }, [currentSkillIndex, router]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (router.asPath) {
       const pathSegments = router.asPath.split('/');
       if (pathSegments.length > 2) {
@@ -52,7 +51,7 @@ const MainLayout = ({ children }) => {
         const newSkillIndex = skillOrder.indexOf(skillFromUrl);
 
         if (newSkillIndex !== -1 && newSkillIndex !== currentSkillIndex) {
-          setCurrentSkillIndex(newSkillIndex);
+          setCurrentSkillIndex(newSkillIndex);  
         }
       }
     }
@@ -62,8 +61,8 @@ const MainLayout = ({ children }) => {
     <div className={styles["layout"]}>
       <Header timeRemaining={timeRemaining} />
       <main>{children}</main>
-      <Footer 
-        currentSkill={skillOrder[currentSkillIndex]} 
+      <Footer
+        currentSkill={skillOrder[currentSkillIndex]}
         partNumber={skillConfig[skillOrder[currentSkillIndex]].partNumber}
         currentSkillIndex={currentSkillIndex}
       />
