@@ -5,8 +5,8 @@ export const dynamic = 'force-dynamic'
 export default function Layout({children}) {
 
   return (
-      <div className={styles['body']}>
+      <main className={styles['body']}>
       {children}
-      </div>
+      </main>
   )
 }

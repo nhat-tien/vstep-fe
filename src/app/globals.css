@@ -33,7 +33,10 @@
   font-display: swap;
 }
 :root {
-	--primary-font: "Montserrat", Arial
+	--primary-font: "Montserrat", Arial;
+  --primary-color: #0078d7;
+  --error-color: #cc3123;
+  --warning-color: #cc8f23;
 }
 
 /* @media (prefers-color-scheme: dark) { */

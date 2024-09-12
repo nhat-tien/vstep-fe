@@ -7,6 +7,7 @@ import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton/LogoutButton";
 
 const CheckingPage = async () => {
+
   const { data } = await getProfile();
 
   return (

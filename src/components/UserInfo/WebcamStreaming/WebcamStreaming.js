@@ -1,65 +1,55 @@
-"use client"
-import { useState, useEffect, useRef } from "react"
-import styles from "./styles.module.css"
-import Image from "next/image"
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
+import styles from "./styles.module.css";
+import Image from "next/image";
+import Webcam from "react-webcam";
+import CameraButton from "./CameraButton";
+import toast from "react-hot-toast";
 
-const WebcamStreaming = ({ className }) => {
+const WebcamStreaming = () => {
   const [avatar, setAvatar] = useState("/images/Group 4.svg");
-  const [showWebcam, setShowWebcam] = useState(false);
-  const [webcamAvailable, setWebcamAvailable] = useState(false);
-  const videoRef = useRef(null);
+  const [camera, setCamera] = useState("close");
+  const [error, setError] = useState(false);
+  const webcamRef = useRef(null);
 
-  const handleDisplayWebcam = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (stream) {
-        setWebcamAvailable(true);
-      }
-    } catch (err) {
-      console.error("Không thể truy cập webcam: ", err);
-      setWebcamAvailable(false);
+  const handleTakePicture = useCallback(() => {
+    if (error) {
+      return;
     }
-    setShowWebcam(true);
+    setCamera("retake");
+    const imageSrc = webcamRef.current.getScreenshot();
+    console.log(imageSrc);
+    setAvatar(imageSrc);
+  }, [webcamRef]);
+
+  const handleError = () => {
+    setError(true);
+    toast.error("Camera not found");
   };
-
-  useEffect(() => {
-    const startVideo = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: false,
-        });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      } catch (err) {
-        console.error("Error accessing webcam: ", err);
-      }
-    };
-
-    startVideo();
-
-    return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const tracks = videoRef.current.srcObject.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
-    };
-  }, []);
 
   return (
     <div className={styles.avatar}>
       <div className={styles["avatar-container"]}>
-        <Image src={avatar} alt="Avatar" width={120} height={120} />
-        {showWebcam && webcamAvailable && (
-          <div className={styles["webcam-container"]}>
-            <video ref={videoRef} className={styles["avatar-webcam"]} autoPlay muted />
-          </div>
+        {camera == "close" || camera == "retake" ? (
+          <Image src={avatar} height={150} width={150} alt="avatar" />
+        ) : (
+          <Webcam
+            height={150}
+            ref={webcamRef}
+            onUserMediaError={handleError}
+            videoConstraints={{
+                width: 150,
+                height: 150,
+                facingMode: "user"
+              }}
+          />
         )}
       </div>
-      <button onClick={handleDisplayWebcam} className={styles["avatar-button"]}>
-        Tìm webcam
-      </button>
+      <CameraButton
+        camera={camera}
+        setCamera={setCamera}
+        handleTakePicture={handleTakePicture}
+      />
     </div>
   );
 };
