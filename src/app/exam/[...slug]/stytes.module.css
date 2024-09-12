@@ -1,9 +1,18 @@
+.body {
+    display: fixed;
+}
 .save-bottom {
     position: fixed;
-    bottom: 20px;  /* Khoảng cách từ đáy màn hình */
-    right: 20px;   /* Khoảng cách từ cạnh phải màn hình */
+    bottom: 19px;  /* Khoảng cách từ đáy màn hình */
+    right: 420px;   /* Khoảng cách từ cạnh phải màn hình */
     z-index: 760;  /* Đảm bảo nút luôn nằm trên các phần tử khác */
-    background-color: azure;
-    transform: scale(1.1);
-}
+    background-color: red;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+  }
 

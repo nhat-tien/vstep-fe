@@ -16,9 +16,7 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
     if (savedAnswers) {
       try {
         const parsedAnswers = JSON.parse(savedAnswers);
-        if (parsedAnswers) {
-          setAnswers(parsedAnswers);
-        }
+        setAnswers(parsedAnswers);
       } catch (error) {
         console.error("Lỗi trong lúc parse file json:", error);
       }
@@ -26,26 +24,26 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
   }, [skill, part]);
 
   useEffect(() => {
-    // Cập nhật số câu hỏi đã chọn khi answers thay đổi
-    setAnsweredQuestionsCount(Object.keys(answers).length);
-  }, [answers]);
+    const selectedAnswersCount = Object.keys(answers).filter(questionId => 
+      questions.find(q => q.questionId === questionId && q.questionType === 'select')
+    ).length;
+    setAnsweredQuestionsCount(selectedAnswersCount);
+  }, [answers, questions]);
 
   useEffect(() => {
-    // Reset số câu hỏi đã chọn khi `part` thay đổi
     setAnsweredQuestionsCount(0); 
   }, [part]);
+
+  const totalQuestionsCount = questions.filter(q => q.questionType === 'select').length;
+  let multipleChoiceCount = 0;
 
   const handleAudioEnd = () => {
     setAudioPlayed(true);
   };
 
-  const totalQuestionsCount = questions.length; // Tổng số câu hỏi từ dữ liệu
-  let multipleChoiceCount = 0; // Khởi tạo bộ đếm câu trắc nghiệm ngoài render
-
   return (
     <div className={styles["container-listen-wrapper"]}>
       <div className={styles["container-listen"]}>
-        {/* Phần hiển thị số câu hỏi đã chọn */}
         <div className={styles["question-summary"]}>
           <p>Đã chọn: {answeredQuestionsCount} / {totalQuestionsCount} câu</p>
         </div>
@@ -70,7 +68,6 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
           }
 
           if (question.questionType === 'select') {
-            // Tăng bộ đếm câu hỏi trắc nghiệm khi gặp câu hỏi trắc nghiệm
             multipleChoiceCount += 1;
             
             return (
@@ -82,7 +79,7 @@ const ContainerListen = ({ questions = [], handleAnswerChange, skill, part }) =>
                   handleAnswerChange(question.questionId, answer);
                   setAnswers(prevAnswers => ({ ...prevAnswers, [question.questionId]: answer }));
                 }}
-                questionNumber={multipleChoiceCount} // Truyền số câu hỏi trắc nghiệm
+                questionNumber={multipleChoiceCount}
               />
             );
           }

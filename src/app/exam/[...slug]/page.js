@@ -83,7 +83,6 @@ const PartPage = () => {
   return (
     <div>
       {questions ? renderContainerSkill() : <p>Loading...</p>}
-      <button className={styles['save-bottom']} onClick={handleSaveAnswers}>Lưu Part</button>
     </div>
   );
 };

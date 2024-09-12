@@ -28,7 +28,7 @@ const WebcamStreaming = () => {
   };
 
   return (
-    <div className={styles.avatar}>
+    <div className={styles['avatar']}>
       <div className={styles["avatar-container"]}>
         {camera == "close" || camera == "retake" ? (
           <Image src={avatar} height={150} width={150} alt="avatar" />
