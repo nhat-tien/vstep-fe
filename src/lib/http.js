@@ -25,7 +25,9 @@ async function get(url,  opts = { auth: true}) {
   return data;
 }
 
-async function post(url, body, opts = { auth: true}) {
+async function post(url, body, opts) {
+  opts = {formData: false, auth: true, ...opts};
+
   const accessToken = cookies().get("access_token");
 
   const authorizationHeader = opts.auth
@@ -33,12 +35,19 @@ async function post(url, body, opts = { auth: true}) {
         Authorization: "Bearer " + accessToken?.value,
       }
     : {};
+  const contentType = opts.formData 
+  ? {}
+  : 
+    {
+          "Content-type": "application/json",
+    };
+
   const res = await fetch(BASE_URL + url, {
     method: "POST",
-    body: JSON.stringify(body),
+    body: opts.formData ? body : JSON.stringify(body),
     headers: {
       "Accept": "application/json",
-      "Content-type": "application/json",
+      ...contentType,
       ...authorizationHeader,
     },
   });

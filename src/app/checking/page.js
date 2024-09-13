@@ -5,6 +5,7 @@ import WebcamStreaming from "@/components/UserInfo/WebcamStreaming/WebcamStreami
 import AudioTesting from "@/components/UserInfo/AudioTesting/AudioTesting";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton/LogoutButton";
+import ReceiveExamButton from "@/components/ReceiveExamButton/ReceiveExamButton";
 
 const CheckingPage = async () => {
 
@@ -22,11 +23,11 @@ const CheckingPage = async () => {
               </p>
               <p>
                 <span className={styles["boldFirstPart"]}>Giới tính:</span>{" "}
-                {data ? data.sex : "Nam"}
+                {data ? data.sex == "M" ? "Nam" : "Nữ" : "Sex"}
               </p>
               <p>
                 <span className={styles["boldFirstPart"]}>Tài khoản:</span>{" "}
-                {data ? data.email : "BanTraiTien@gmail.com"}
+                {data ? data.email : "default@mail.com"}
               </p>
               <p>
                 <span className={styles["boldFirstPart"]}>SBD:</span>{" "}
@@ -34,12 +35,7 @@ const CheckingPage = async () => {
               </p>
             </div>
             <div className={styles["action-btn-group"]}>
-              <Link
-                className={styles["receive-exam-button"]}
-                href={"/exam/listening/1"}
-              >
-                Nhận đề
-              </Link>
+              <ReceiveExamButton />
               <LogoutButton className={styles["logout-button"]} >
                 Đăng xuất 
               </LogoutButton>

@@ -1,26 +1,27 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import Webcam from "react-webcam";
 import CameraButton from "./CameraButton";
 import toast from "react-hot-toast";
+import { useAppStore } from "@/stores/app-store-provider";
 
 const WebcamStreaming = () => {
-  const [avatar, setAvatar] = useState("/images/Group 4.svg");
+  const avatar = useAppStore(state => state.avatar);
+  const setAvatar = useAppStore(state => state.setAvatar);
   const [camera, setCamera] = useState("close");
   const [error, setError] = useState(false);
   const webcamRef = useRef(null);
 
-  const handleTakePicture = useCallback(() => {
+  const handleTakePicture = () => {
     if (error) {
       return;
     }
     setCamera("retake");
     const imageSrc = webcamRef.current.getScreenshot();
-    console.log(imageSrc);
     setAvatar(imageSrc);
-  }, [webcamRef]);
+  };
 
   const handleError = () => {
     setError(true);
@@ -42,6 +43,7 @@ const WebcamStreaming = () => {
                 height: 150,
                 facingMode: "user"
               }}
+            screenshotFormat="image/jpeg"
           />
         )}
       </div>

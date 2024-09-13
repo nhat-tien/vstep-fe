@@ -4,6 +4,7 @@ import styles from "@/components/Login/styles.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {login} from "@/services/auth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const handlelogin = async (e) => {
     try {
       const response = await login({email: email, password: password});
       if (response.ok) {
+        toast.success("Login Successful")
         router.push("/checking");
     } else {
       setError(response.message);
