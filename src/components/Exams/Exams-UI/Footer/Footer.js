@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Footer/styles.module.css';
+import SubmitButton from '@/components/SubmitButton/SubmitButton';
 
 const Footer = ({ currentSkill, currentSkillIndex }) => {
   const router = useRouter();
@@ -75,6 +76,7 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
             </div>
           ))}
         </div>
+        <SubmitButton />
       </div>
     </footer>
   );

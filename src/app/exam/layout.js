@@ -22,7 +22,7 @@ const MainLayout = ({ children }) => {
     const totalDurationExamTime = skillConfig[currentSkill].totalDurationExamTime;
 
     setTimeRemaining(totalDurationExamTime);
-
+    
     const timer = setInterval(() => {
       setTimeRemaining(prev => {
         if (prev <= 1) {
