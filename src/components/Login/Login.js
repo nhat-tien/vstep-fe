@@ -19,8 +19,8 @@ const handlelogin = async (e) => {
     try {
       const response = await login({email: email, password: password});
       if (response.ok) {
-        toast.success("Login Successful")
         router.push("/checking");
+        toast.success("Login Successful");
     } else {
       setError(response.message);
     } 
