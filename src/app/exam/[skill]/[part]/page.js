@@ -1,34 +1,42 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
 import ContainerListen from "@/components/Exams/ContainerSkill/Listening/ContainerListen";
 import ContainerReading from "@/components/Exams/ContainerSkill/Reading/ContainerReading";
 import ContainerSpeaking from "@/components/Exams/ContainerSkill/Speaking/ContainerSpeaking";
 import ContainerWriting from "@/components/Exams/ContainerSkill/Writing/ContainerWriting";
 import getQuestion from "@/services/getQuestion";
-import styles from "@/app/exam/[...slug]/stytes.module.css"
+import { useAppStore } from "@/stores/app-store-provider";
+import getCountSelectQuestion from "@/services/getCountSelectQuestion";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
-const PartPage = () => {
-  const params = useParams();
+const PartPage = ({params}) => {
   const [questions, setQuestions] = useState(null);
   const [answers, setAnswers] = useState({});
-  const slug = params.slug;
+  const skill = params.skill;
+  const part = params.part;
+  const count = useAppStore(state => state[`count${capitalizeFirstLetter(skill)}${part}`]);
+  const setCount = useAppStore(state => state.setCount);
+  
 
   useEffect(() => {
     const loadQuestions = async () => {
-        const questionsData = await getQuestion(slug[0], slug[1]);
+        const questionsData = await getQuestion(skill,part);
         console.log("Đây là của QuestionData:", questionsData);
         setQuestions(questionsData);
+        if(count == 0 && (skill == "listening" || skill == "reading" )) {
+          const count = await getCountSelectQuestion(skill, part);
+          setCount(capitalizeFirstLetter(skill), part, count);
+        }
     };
     console.log("Đây là của questions: ", questions);
     loadQuestions();
     
-  }, [slug]);
+  }, [params]);
 
   const handleSaveAnswers = () => {
     try {
-          localStorage.setItem(`answered-${slug[0]}-${slug[1]}`, JSON.stringify(answers))
-          const test = localStorage.getItem(`answered-${slug[0]}-${slug[1]}`);
+          localStorage.setItem(`answered-${skill}-${part}`, JSON.stringify(answers))
+          const test = localStorage.getItem(`answered-${skill}-${part}`);
           console.log("Trước khi ấn nút lưu: ", test)
     } catch (error) {
       console.error('Lỗi khi lưu file Json:', error)
@@ -43,15 +51,14 @@ const PartPage = () => {
   };
 
   const renderContainerSkill = () => {
-    const skill = slug[0];
     switch (skill) {
       case "listening":
         return (
           <ContainerListen
             questions={questions || []}
             handleAnswerChange={handleAnswerChange}
-            skill={slug[0]}
-            part={slug[1]}
+            skill={skill}
+            part={part}
           />
         );
       case "writing":
@@ -59,6 +66,7 @@ const PartPage = () => {
           <ContainerWriting
             questions={questions || []}
             handleAnswerChange={handleAnswerChange}
+            part={part}
           />
         );
       case "reading":
@@ -66,6 +74,7 @@ const PartPage = () => {
           <ContainerReading
             questions={questions || []}
             handleAnswerChange={handleAnswerChange}
+            part={part}
           />
         );
       case "speaking":
@@ -73,6 +82,7 @@ const PartPage = () => {
           <ContainerSpeaking
             questions={questions || []}
             handleAnswerChange={handleAnswerChange}
+            part={part}
           />
         );
       default:

@@ -1,20 +1,16 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import styles from '@/components/Exams/QuestionType/SelectType/Styles.module.css';
+import { useAppStore } from '@/stores/app-store-provider';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 
-const MultipleChoice = ({ question, selectedAnswer, saveAnswer, questionNumber }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+const MultipleChoice = ({ question, questionNumber, skill}) => {
+  const answers = useAppStore(state => state[`${skill}Answers${question.part}`])
+  const setAnswers = useAppStore(state => state[`set${capitalizeFirstLetter(skill)}Answers`]);
 
-  useEffect(() => {
-    if (selectedAnswer) {
-      setSelectedOption(selectedAnswer);
-    }
-  }, [selectedAnswer]);
 
   const handleOptionChange = (event) => {
-    const value = event.target.value;
-    setSelectedOption(value);
-    saveAnswer(value);
+    setAnswers(question.questionId, event.target.value, question.part);
   };
 
   const labels = ['A', 'B', 'C', 'D'];
@@ -31,7 +27,8 @@ const MultipleChoice = ({ question, selectedAnswer, saveAnswer, questionNumber }
                   type="radio"
                   name={`question-${question.questionId}`}
                   value={option.selectOptionId}
-                  checked={selectedOption === String(option.selectOptionId)}
+                  // checked={selectedOption === String(option.selectOptionId)}
+                  checked={answers[question.questionId] == option.selectOptionId}
                   onChange={handleOptionChange}
                   className={styles["radio-button"]}
                 />

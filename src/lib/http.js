@@ -18,6 +18,7 @@ async function get(url,  opts = { auth: true}) {
       Accept: "application/json",
       ...authorizationHeader,
     },
+    cache: "force-cache",
   });
 
   const data = await res.json();

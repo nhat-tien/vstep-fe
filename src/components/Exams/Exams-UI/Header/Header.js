@@ -3,11 +3,16 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Header/styles.module.css'; 
 import getProfile from '@/services/getProfile';
 import Image from "next/image"
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
+import { useAppStore } from '@/stores/app-store-provider';
+import QuestionSummary from '@/components/QuestionSummary/QuestionSummary';
 
 const Header = ({ timeRemaining }) => {
   // Chuyển đổi thời gian còn lại thành định dạng phút:giây
-  const [avatar, setAvatar] = useState("/images/Group 4.svg");
+  const avatar = useAppStore(state => state.avatar)
+  const params = useParams();
+  const part = params.part;
+  const skill = params.skill;
   const router = useRouter();
 
   const minutes = Math.floor(timeRemaining / 60);
@@ -45,6 +50,7 @@ const Header = ({ timeRemaining }) => {
           <span>{formattedTime.seconds[1]}</span>
         </div>
       </div>
+      <QuestionSummary skill={skill} part={part}/>
     </header>
   );
 };

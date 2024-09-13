@@ -14,18 +14,19 @@ const WebcamStreaming = () => {
   const [error, setError] = useState(false);
   const webcamRef = useRef(null);
 
-  const handleTakePicture = () => {
-    if (error) {
-      return;
+  const handleTakePicture = useCallback(() => {
+    if(webcamRef.current.state.hasUserMedia) {
+      setCamera("retake");
+      const imageSrc = webcamRef.current.getScreenshot();
+      if(imageSrc != null) {
+        setAvatar(imageSrc);
+      }
     }
-    setCamera("retake");
-    const imageSrc = webcamRef.current.getScreenshot();
-    setAvatar(imageSrc);
-  };
+  }, [webcamRef]);
 
   const handleError = () => {
-    setError(true);
     toast.error("Camera not found");
+    setCamera("close")
   };
 
   return (

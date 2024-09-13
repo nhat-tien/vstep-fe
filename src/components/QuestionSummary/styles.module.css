@@ -1,0 +1,12 @@
+.question-summary {
+    position: fixed; /* Đặt vị trí cố định trên màn hình */
+    top: 10px; /* Khoảng cách từ trên cùng của màn hình */
+    right: 20px; /* Khoảng cách từ bên phải của màn hình */
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt nhẹ */
+    color: #333; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Góc bo tròn */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+    font-size: 16px; /* Kích thước chữ */
+    z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
+  }

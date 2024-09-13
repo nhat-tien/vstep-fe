@@ -11,8 +11,6 @@ export default async function getQuestion(skill, part) {
     const { data } = await http.get(
       `/exam/${examId}?skill=${skill}&part=${part}`,
     );
-    console.log(data);
-
     const ModifyData = data.map((item) => {
       return {
         ...item,
