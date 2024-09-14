@@ -63,8 +63,10 @@ const MainLayout = ({ children }) => {
       <main>{children}</main>
       <Footer
         currentSkill={skillOrder[currentSkillIndex]}
+        setCurrentSkillIndex={setCurrentSkillIndex}
         partNumber={skillConfig[skillOrder[currentSkillIndex]].partNumber}
         currentSkillIndex={currentSkillIndex}
+        skillOrder={skillOrder}
       />
     </div>
   );

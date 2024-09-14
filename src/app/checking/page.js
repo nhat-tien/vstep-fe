@@ -3,7 +3,6 @@ import Image from "next/image";
 import getProfile from "@/services/getProfile";
 import WebcamStreaming from "@/components/UserInfo/WebcamStreaming/WebcamStreaming";
 import AudioTesting from "@/components/UserInfo/AudioTesting/AudioTesting";
-import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton/LogoutButton";
 import ReceiveExamButton from "@/components/ReceiveExamButton/ReceiveExamButton";
 

@@ -2,14 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Header/styles.module.css'; 
 import getProfile from '@/services/getProfile';
-import Image from "next/image"
+import Image from "next/image";
 import { useRouter, useParams } from 'next/navigation';
 import { useAppStore } from '@/stores/app-store-provider';
 import QuestionSummary from '@/components/QuestionSummary/QuestionSummary';
 
 const Header = ({ timeRemaining }) => {
-  // Chuyển đổi thời gian còn lại thành định dạng phút:giây
-  const avatar = useAppStore(state => state.avatar)
+  const avatar = useAppStore(state => state.avatar);
   const params = useParams();
   const part = params.part;
   const skill = params.skill;
@@ -22,6 +21,7 @@ const Header = ({ timeRemaining }) => {
     seconds: String(seconds).padStart(2, '0'),
   };
   const [user, setUser] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -34,6 +34,19 @@ const Header = ({ timeRemaining }) => {
     };
     fetchUserProfile();
   }, []);
+
+  const handleSubmit = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmation(false);
+    router.push('/submit');
+  };
+
+  const handleCancelSubmit = () => {
+    setShowConfirmation(false);
+  };
 
   return (
     <header className={styles['header']}>
@@ -50,7 +63,28 @@ const Header = ({ timeRemaining }) => {
           <span>{formattedTime.seconds[1]}</span>
         </div>
       </div>
-      <QuestionSummary skill={skill} part={part}/>
+      <div className={styles['summary']}>
+      <QuestionSummary skill={skill} part={part} />
+      </div>
+      <button className={styles['submit-button']} onClick={handleSubmit}>
+        Nộp Bài
+      </button>
+
+      {showConfirmation && (
+        <>
+          <div className={`${styles['modal-overlay']} ${styles['show']}`} />
+          <div className={`${styles['confirmation-modal']} ${styles['show']}`}>
+            <p>Nộp bài đồng nghĩa với kết thúc bài thi!</p>
+            <p>Bạn có chắc chắn muốn nộp bài?</p>
+            <button className={styles['confirm-button']} onClick={handleConfirmSubmit}>
+              Có
+            </button>
+            <button className={styles['cancel-button']} onClick={handleCancelSubmit}>
+              Không
+            </button>
+          </div>
+        </>
+      )}
     </header>
   );
 };

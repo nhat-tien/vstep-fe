@@ -11,7 +11,6 @@ const WebcamStreaming = () => {
   const avatar = useAppStore(state => state.avatar);
   const setAvatar = useAppStore(state => state.setAvatar);
   const [camera, setCamera] = useState("close");
-  const [error, setError] = useState(false);
   const webcamRef = useRef(null);
 
   const handleTakePicture = useCallback(() => {

@@ -1,15 +1,27 @@
 .container-Writing-Wrapper {
     padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
     min-height: 100vh; /* Đảm bảo container chiếm ít nhất chiều cao của viewport */
-    
 }
 
 .container-Writing {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
+    flex-direction: column; /* Đặt các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+.readingBox {
+    width: 100%;
+    max-width: 800px; /* Đặt chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa */
+}
+
+.wordCountBox {
+    margin-top: 10px;
+    margin-bottom: 10px; /* Khoảng cách dưới cho bộ đếm từ */
+    font-size: 14px; /* Kích thước chữ của bộ đếm từ */
+    color: #555; /* Màu chữ của bộ đếm từ */
 
 }
 
@@ -23,9 +35,8 @@
     border-radius: 4px; /* Góc bo tròn */
     box-sizing: border-box; /* Bao gồm padding và border trong kích thước tổng cộng */
     resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
-    margin-top: 10px; /* Khoảng cách trên của textarea */
     outline: none; /* Xóa đường viền khi focus */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Khoảng cách dưới cho textarea */
 }
 
 .textarea:focus {

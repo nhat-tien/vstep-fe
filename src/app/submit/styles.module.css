@@ -1,0 +1,14 @@
+.submit-page {
+    background-color: #0078d7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    text-align: center; /* Giữa các dòng chữ */
+}
+
+.submit-page p {
+    margin: 10px 0; /* Tạo khoảng cách giữa các dòng chữ */
+}

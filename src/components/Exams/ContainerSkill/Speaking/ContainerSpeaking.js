@@ -6,15 +6,17 @@ import styles from '@/components/Exams/ContainerSkill/Speaking/styles.module.css
 import WaveSurfer from 'wavesurfer.js';
 import { useRouter } from 'next/navigation';
 
-const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
+const ContainerSpeaking = ({ questions = [] }) => {
   const [showMicCheck, setShowMicCheck] = useState(true);
-  const [micCheckTimeLeft, setMicCheckTimeLeft] = useState(60);
+  const [micCheckTimeLeft, setMicCheckTimeLeft] = useState(20);
   const [currentPart, setCurrentPart] = useState(0);
   const [currentPhase, setCurrentPhase] = useState(1);
   const [timeLeft, setTimeLeft] = useState(10);
   const [isRecording, setIsRecording] = useState(false);
 
   const waveformRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
   const router = useRouter();
 
   // Đếm ngược cho phần kiểm tra mic
@@ -29,7 +31,7 @@ const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
     }
   }, [micCheckTimeLeft]);
 
-  // Đếm ngược cho các phase, chỉ bắt đầu khi hết kiểm tra mic
+  // Đếm ngược cho các phase, tự động bắt đầu ghi âm ở phase 2
   useEffect(() => {
     if (!showMicCheck) {
       const timer = setInterval(() => {
@@ -60,19 +62,38 @@ const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
     }
   }, [timeLeft, currentPart, currentPhase, showMicCheck, router]);
 
-  // Khởi tạo Wavesurfer khi ghi âm
+  // Tự động bắt đầu ghi âm ở phase 2 và lưu âm thanh vào localStorage
   useEffect(() => {
     if (isRecording) {
-      const wavesurfer = WaveSurfer.create({
-        container: waveformRef.current,
-        waveColor: 'violet',
-        progressColor: 'purple',
-        height: 100
-      });
-      wavesurfer.load('');
-      return () => wavesurfer.destroy();
+      const startRecording = async () => {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorderRef.current = new MediaRecorder(stream);
+        audioChunksRef.current = [];
+
+        mediaRecorderRef.current.ondataavailable = (event) => {
+          audioChunksRef.current.push(event.data);
+        };
+
+        mediaRecorderRef.current.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/mp3' });
+          const url = URL.createObjectURL(audioBlob);
+
+          // Lưu âm thanh vào localStorage với khóa tương ứng
+          localStorage.setItem(`recordedAudioPart${currentPart + 1}`, url); //Ví dụ: recordedAudioPart1, recordedAudioPart2, recordedAudioPart3
+        };
+
+        mediaRecorderRef.current.start();
+      };
+
+      startRecording();
+
+      return () => {
+        if (mediaRecorderRef.current) {
+          mediaRecorderRef.current.stop();
+        }
+      };
     }
-  }, [isRecording]);
+  }, [isRecording, currentPart]);
 
   return (
     <div className={styles['container-Speaking-Wrapper']}>
@@ -104,8 +125,8 @@ const ContainerSpeaking = ({ questions = [], handleAnswerChange }) => {
           )}
 
           {isRecording && (
-            <div className={styles.recordingIndicator}>
-              <div ref={waveformRef} className={styles.waveform}></div>
+            <div className={styles['recordingIndicator']}>
+              <div ref={waveformRef} className={styles['waveform']}></div>
             </div>
           )}
         </div>

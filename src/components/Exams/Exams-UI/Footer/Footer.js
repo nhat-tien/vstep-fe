@@ -1,33 +1,13 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Footer/styles.module.css';
 import SubmitButton from '@/components/SubmitButton/SubmitButton';
 
-const Footer = ({ currentSkill, currentSkillIndex }) => {
+const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOrder }) => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(null);
-
-  useEffect(() => {
-    // Reset activeButton khi skill thay đổi
-    setActiveButton(null);
-    
-    // Thiết lập nút đầu tiên của skill hiện tại là active
-    const firstPart = skills[currentSkill][0];
-    setActiveButton(firstPart);
-
-    // Điều hướng đến phần đầu tiên khi component load
-    navigateToPart(currentSkill, firstPart);
-  }, [currentSkill]);
-
-  const handleClick = (partNumber) => {
-    setActiveButton(partNumber);
-  };
-
-  const navigateToPart = (skill, partNumber) => {
-    router.push(`/exam/${skill}/${partNumber}`);
-  };
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const skills = {
     listening: [1, 2, 3], 
@@ -43,8 +23,44 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
     writing: 50,
   };
 
+  // Khi skill thay đổi, reset activeButton về part 1 của skill hiện tại
+  useEffect(() => {
+    const firstPart = skills[currentSkill][0];
+    setActiveButton(firstPart); // Đặt nút đầu tiên của skill hiện tại là active
+    navigateToPart(currentSkill, firstPart); // Điều hướng đến phần đầu tiên khi skill load
+  }, [currentSkill]);
+
+  const handleClick = (partNumber) => {
+    setActiveButton(partNumber); // Chỉ thay đổi activeButton khi part trong skill hiện tại
+  };
+
+  const navigateToPart = (skill, partNumber) => {
+    router.push(`/exam/${skill}/${partNumber}`);
+  };
+
   const isSkillUnlocked = (index) => {
-    return index === currentSkillIndex;
+    return index <= currentSkillIndex; // Unlock các skill từ đầu đến skill hiện tại
+  };
+
+  const handleNextSkill = () => {
+    if (currentSkillIndex < skillOrder.length - 1) {
+      setShowConfirmation(true);
+    }
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmation(false);
+    if (currentSkillIndex < skillOrder.length - 1) {
+      const nextSkillIndex = currentSkillIndex + 1;
+      const nextSkill = skillOrder[nextSkillIndex];
+      setCurrentSkillIndex(nextSkillIndex);
+      setActiveButton(skills[nextSkill][0]); // Đặt nút part 1 của skill tiếp theo là active
+      navigateToPart(nextSkill, 1); // Điều hướng đến part 1 của skill tiếp theo
+    }
+  };
+
+  const handleCancelSubmit = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -52,22 +68,20 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
       <div className={styles["footer"]}>
         <div className={styles["skills-container"]}>
           {Object.keys(skills).map((skill, index) => (
-            <div key={skill} className={`${styles["skill-section"]} ${isSkillUnlocked(index) ? '' : styles['disabled']}`}>
-              {/* Danh sách các nút Part lên trên */}
+            <div key={skill} className={`${styles["skill-section"]} ${index < currentSkillIndex ? styles['disabled'] : ''}`}>
               <div className={styles["button-row"]}>
                 {skills[skill].map(part => (
                   <button
                     key={part}
-                    className={`${styles['toggle-button']} ${isSkillUnlocked(index) && activeButton === part ? styles['active'] : ''} ${!isSkillUnlocked(index) ? styles['disabled-button'] : ''}`}
-                    onClick={() => isSkillUnlocked(index) && navigateToPart(skill, part)}
+                    className={`${styles['toggle-button']} ${activeButton === part && currentSkill === skill ? styles['active'] : ''} ${index < currentSkillIndex ? styles['disabled-button'] : ''}`}
+                    onClick={() => index <= currentSkillIndex && navigateToPart(skill, part)}
                     onMouseDown={() => handleClick(part)}
-                    disabled={!isSkillUnlocked(index)}
+                    disabled={index > currentSkillIndex}
                   >
                     PART {part}
                   </button>
                 ))}
               </div>
-              {/* Tiêu đề Skill xuống dưới */}
               <div className={styles["phase-header"]}>
                 <h1 className={styles["phase-title"]}>
                   {`${skill.toUpperCase()} - ${skillTimes[skill]}`}
@@ -77,6 +91,32 @@ const Footer = ({ currentSkill, currentSkillIndex }) => {
           ))}
         </div>
         <SubmitButton />
+        <div className={styles['next-skill-container']}>
+        <button 
+          className={styles["next-skill-button"]} 
+          onClick={handleNextSkill} 
+          disabled={currentSkillIndex >= skillOrder.length - 1}
+        >
+          Tiếp tục
+        </button>
+        
+        {showConfirmation && (
+          <>
+          <div className={`${styles['modal-overlay']} ${styles['show']}`} />
+          <div className={`${styles['confirmation-modal']} ${styles['show']}`}>
+              <p>Ấn tiếp tục đồng nghĩa bạn sẽ kết thúc phần thi này và không thể quay lại.</p>
+              <p>Bạn có chắc chắn muốn tiếp tục?</p>
+              <p>Lưu ý, hãy chắc chắn bản thân đã lưu phần thi hiện tại.</p>
+              <button className={styles['confirm-button']} onClick={handleConfirmSubmit}>
+                Có
+              </button>
+              <button className={styles['cancel-button']} onClick={handleCancelSubmit}>
+                Không
+              </button>
+            </div>
+          </>
+        )}
+      </div>
       </div>
     </footer>
   );
