@@ -1,5 +1,4 @@
 .text-question-container {
-    border: 1px solid black; /* Đường viền đen đơn giản quanh câu hỏi */
     font-family: Arial, (--primary-font);
     padding: 10px; /* Khoảng cách bên trong giữa nội dung và viền */
     margin: 20px 0; /* Khoảng cách phía trên và dưới để tạo không gian giữa các câu hỏi */

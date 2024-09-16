@@ -11,9 +11,9 @@ const MainLayout = ({ children }) => {
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
   const skillOrder = ['listening', 'reading', 'writing', 'speaking'];
   const skillConfig = {
-    listening: { partNumber: 3, totalDurationExamTime: 3 },
-    reading: { partNumber: 4, totalDurationExamTime: 3 },
-    writing: { partNumber: 2, totalDurationExamTime: 5000 },
+    listening: { partNumber: 3, totalDurationExamTime: 300 },
+    reading: { partNumber: 4, totalDurationExamTime: 300 },
+    writing: { partNumber: 2, totalDurationExamTime: 300 },
     speaking: { partNumber: 1, totalDurationExamTime: 10*60 },
   };
 

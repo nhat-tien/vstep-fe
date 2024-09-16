@@ -1,44 +1,51 @@
 /* Áp dụng font Arial cho toàn bộ nội dung của câu hỏi */
 .multiple-choice {
-    font-family: Arial, sans-serif; /* Đặt font chữ thành Arial */
-    padding-bottom: 10px; /* Khoảng cách dưới mỗi câu hỏi */
-    margin-left: 100px;
-  }
-  
-  .multiple-choice h3 {
-    margin-bottom: 13px; /* Khoảng cách dưới tiêu đề câu hỏi */
-  }
-  
-  .radio-button-label {
-    display: flex;
-    align-items: center; /* Canh giữa theo chiều dọc */
-    margin-bottom: 8px; /* Khoảng cách giữa các tùy chọn */
-  }
-  
-  .question {
-    position: relative;
-    left: -50px;
-    font-size: 20px;
-  }
+  font-family: Arial, sans-serif; /* Đặt font chữ thành Arial */
+  padding-bottom: 10px; /* Khoảng cách dưới mỗi câu hỏi */
+}
 
-  .radio-button-label input[type="radio"] {
-    margin-right: 8px; /* Khoảng cách giữa radio button và văn bản */
-    vertical-align: middle; /* Căn chỉnh theo chiều dọc với văn bản */
-  }
-  
-  .radio-button {
-    appearance: none; /* Loại bỏ kiểu mặc định */
-    width: 16px; /* Kích thước của vòng tròn */
-    height: 16px; /* Kích thước của vòng tròn */
-    border-radius: 50%; /* Tạo hình tròn */
-    border: 2px solid #ccc; /* Màu sắc của vòng tròn không được chọn */
-    outline: none; /* Loại bỏ viền khi được chọn */
-    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
-    transition: background-color 0.3s, border-color 0.3s; /* Thêm hiệu ứng chuyển đổi mượt mà */
-  }
-  
-  .radio-button:checked {
-    background-color: #0078d7; /* Màu xanh khi được chọn */
-    border-color: #0078d7; /* Thay đổi màu viền khi được chọn */
-  }
-  
+.multiple-choice ul {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+
+.multiple-choice h3 {
+  margin-bottom: 13px; /* Khoảng cách dưới tiêu đề câu hỏi */
+}
+
+.radio-button-label {
+  display: flex;
+  align-items: center; /* Canh giữa theo chiều dọc */
+  margin-bottom: 8px; /* Khoảng cách giữa các tùy chọn */
+}
+
+.question {
+  font-size: 1.2rem;
+}
+
+.radio-button-label input[type="radio"] {
+  margin-right: 8px; /* Khoảng cách giữa radio button và văn bản */
+  vertical-align: middle; /* Căn chỉnh theo chiều dọc với văn bản */
+}
+
+.radio-button {
+  appearance: none; /* Loại bỏ kiểu mặc định */
+  width: 16px; /* Kích thước của vòng tròn */
+  height: 16px; /* Kích thước của vòng tròn */
+  border-radius: 50%; /* Tạo hình tròn */
+  border: 2px solid #ccc; /* Màu sắc của vòng tròn không được chọn */
+  outline: none; /* Loại bỏ viền khi được chọn */
+  cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+  transition:
+    background-color 0.3s,
+    border-color 0.3s; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+
+.radio-button:checked {
+  background-color: #0078d7; /* Màu xanh khi được chọn */
+  border-color: #0078d7; /* Thay đổi màu viền khi được chọn */
+}
+
