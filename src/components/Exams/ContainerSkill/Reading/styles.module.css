@@ -1,36 +1,37 @@
 .container-reading-wrapper {
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    padding-top: 60px;   
+    height: 100vh; 
+    width: 100vw; 
+    background-color: #f9f9f9; 
+    overflow: hidden; 
 }
 
-.container-reading {
-    position: relative;
-    width: 1000px; 
-    overflow-y: auto; /* Cho phép cuộn */
-    background-color: white; /* Đặt màu nền */
-    color: black; /* Đặt màu chữ */
-    padding: 10px; /* Khoảng cách bên trong */
-    margin-bottom: 50px; /* Khoảng trống để tránh bị footer che */
+.page-large {
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
-.container-reading::after {
-    content: ""; /* Tạo một khoảng trắng ở cuối */
-    display: block;
-    height: 100px; /* Chiều cao của khoảng trống thêm */
+.page-small {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+    padding: 20px;
+    box-sizing: border-box; 
 }
 
 .reading-box {
-    margin-bottom: 20px;
+    flex: 6; 
+    background-color: #fff; 
+    border-right: 2px solid #ddd; 
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
-.question-summary{
-    position: fixed; /* Đặt vị trí cố định trên màn hình */
-    top: 10px; /* Khoảng cách từ trên cùng của màn hình */
-    right: 150px; /* Khoảng cách từ bên phải của màn hình */
-    color: #ffffff; /* Màu chữ */
-    padding: 10px 20px; /* Khoảng cách bên trong */
-    font-size: 16px; /* Kích thước chữ */
-    z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
+.question-box {
+    flex: 4; 
+    background-color: #f0f0f0; 
+    padding-bottom: 70px;
+    padding-top: 70px;
+    color: black;
 }

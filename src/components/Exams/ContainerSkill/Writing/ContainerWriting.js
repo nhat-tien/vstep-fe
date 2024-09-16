@@ -9,8 +9,6 @@ import { useAppStore } from '@/stores/app-store-provider';
 const ContainerWriting = ({ questions = [], part}) => {
   const answers = useAppStore(state => state[`writingAnswers${part}`]);
   
-
-  // Tính số từ
   const wordCount = (text) => {
     return text.trim().split(/\s+/).length;
   };
