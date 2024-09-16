@@ -3,15 +3,22 @@
 import * as http from "@/lib/http";
 import getSchedules from "./getSchedule";
 
-export default async function postAnswers(answers) {
+export default async function postAnswers(answers, isWriting = false) {
   try {
     const { scheduleId } = await getSchedules();
     const answerSubmit = [];
     for (let questionId in answers) {
-      answerSubmit.push({
-        questionId: questionId,
-        selectOptionId: answers[questionId],
-      });
+      if(isWriting) {
+        answerSubmit.push({
+          questionId: questionId,
+          text: answers[questionId],
+        });
+      } else {
+        answerSubmit.push({
+          questionId: questionId,
+          selectOptionId: answers[questionId],
+        });
+      }
     }
     const res = await http.put("/answers", {
       scheduleId: scheduleId,

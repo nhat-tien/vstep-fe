@@ -3,22 +3,16 @@ import React, { useState } from 'react';
 import Text from '../../QuestionType/TextType/Text';
 import styles from '@/components/Exams/ContainerSkill/Writing/styles.module.css';
 import Image from "@/components/Exams/QuestionType/ImageType/Image";
+import TextBoxAnswer from '@/components/TextBoxAnswer/TextBoxAnswer';
+import { useAppStore } from '@/stores/app-store-provider';
 
-const ContainerWriting = ({ questions = [], handleAnswerChange }) => {
-  const [textValues, setTextValues] = useState({});
+const ContainerWriting = ({ questions = [], part}) => {
+  const answers = useAppStore(state => state[`writingAnswers${part}`]);
+  
 
   // Tính số từ
   const wordCount = (text) => {
     return text.trim().split(/\s+/).length;
-  };
-
-  // Cập nhật giá trị textarea và số từ
-  const handleTextChange = (questionId, value) => {
-    setTextValues((prev) => ({
-      ...prev,
-      [questionId]: value,
-    }));
-    handleAnswerChange(questionId, value);
   };
 
   return (
@@ -26,7 +20,7 @@ const ContainerWriting = ({ questions = [], handleAnswerChange }) => {
       <div className={styles['container-Writing']}>
         {questions.map((question) => {
           if (question.questionType === 'image') {
-            const currentText = textValues[question.questionId] || '';
+            const currentText = answers[question.questionId] || '';
             const currentWordCount = wordCount(currentText);
 
             return (
@@ -38,13 +32,7 @@ const ContainerWriting = ({ questions = [], handleAnswerChange }) => {
                 <div className={styles['wordCountBox']}>
                   <p>Words count: {currentWordCount}</p>
                 </div>
-                <textarea
-                  rows="10"
-                  value={currentText}
-                  onChange={(e) => handleTextChange(question.questionId, e.target.value)}
-                  placeholder="Write your essay here..."
-                  className={styles['textarea']}
-                />
+                <TextBoxAnswer questionId={question.questionId} part={question.part}/>
               </div>
             );
           }

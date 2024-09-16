@@ -1,0 +1,36 @@
+.mic-check {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.mic-check-start button {
+  background-color: #0096ff;
+  color: #fff;
+  border: none;
+  padding: 10px 36px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+.mic-check-end button {
+  background-color: #0096ff;
+  color: #fff;
+  border: none;
+  padding: 9.6px 40px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.mic-check-start button:hover {
+  background-color: #007acc;
+}
+
+.mic-check-end button:hover {
+  background-color: #007acc;
+}
+
+.audio-check-end button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

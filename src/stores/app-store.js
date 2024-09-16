@@ -3,13 +3,8 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 export const defaultInitState = {
   avatar: "/images/default-avatar.svg",
-  countListening1: 0,
-  countListening2: 0,
-  countListening3: 0,
-  countReading1: 0,
-  countReading2: 0,
-  countReading3: 0,
-  countReading4: 0,
+  currentSkill: "speaking",
+  currentTimeRemain: "",
   listeningAnswers1: {},
   listeningAnswers2: {},
   listeningAnswers3: {},
@@ -36,10 +31,6 @@ export function createAppStore(initState = defaultInitState) {
     setWritingAnswers: (questionId, answer, part) => 
       set(state => ({
         [`writingAnswers${part}`]: {...state[`writingAnswers${part}`], [questionId]: answer}
-      })),
-    setCount: (skill, part, count) =>
-      set(state => ({
-        [`count${skill}${part}`]: count
       })),
     reset: () => set(defaultInitState)
   }),

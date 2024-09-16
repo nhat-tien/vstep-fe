@@ -64,7 +64,7 @@ const Header = ({ timeRemaining }) => {
         </div>
       </div>
       <div className={styles['summary']}>
-      <QuestionSummary skill={skill} part={part} />
+      <QuestionSummary />
       </div>
       <button className={styles['submit-button']} onClick={handleSubmit}>
         Nộp Bài

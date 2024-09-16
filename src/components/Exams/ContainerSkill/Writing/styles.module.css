@@ -24,22 +24,3 @@
     color: #555; /* Màu chữ của bộ đếm từ */
 
 }
-
-.textarea {
-    width: 100%; /* Chiều rộng của textarea bằng 100% container */
-    padding: 10px; /* Khoảng cách bên trong */
-    font-size: 16px; /* Kích thước chữ */
-    color: black;
-    border: 1px solid #ddd; /* Viền nhẹ cho textarea */
-    background-color: white;
-    border-radius: 4px; /* Góc bo tròn */
-    box-sizing: border-box; /* Bao gồm padding và border trong kích thước tổng cộng */
-    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
-    outline: none; /* Xóa đường viền khi focus */
-    margin-bottom: 20px; /* Khoảng cách dưới cho textarea */
-}
-
-.textarea:focus {
-    border-color: #007bff; /* Màu viền khi focus */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng bóng khi focus */
-}

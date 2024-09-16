@@ -4,8 +4,7 @@ import styles from "@/components/Exams/QuestionType/TextType/styles.module.css"
 
 const Text = ({ question }) => {
   return (
-    <div className={styles['text-question-container']}>
-      <p>{question.text}</p>
+    <div dangerouslySetInnerHTML={{__html: question.text}} className={styles['text-question-container']}>
     </div>
   );
 };
