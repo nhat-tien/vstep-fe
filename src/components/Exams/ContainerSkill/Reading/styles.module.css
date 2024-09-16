@@ -1,9 +1,11 @@
 .container-reading-wrapper {
+    padding-top: 50px;
+    padding-bottom: 80px;
     display: flex;
     height: 100vh; 
     width: 100vw; 
     background-color: #f9f9f9; 
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .page-large {
@@ -12,26 +14,28 @@
     height: 100%;
 }
 
-.page-small {
-    display: flex;
-    flex-direction: column;
+.reading-box, .question-box {
+    height: 100%;
     overflow-y: auto; 
     padding: 20px;
     box-sizing: border-box; 
 }
 
+
+.resizer {
+    width: 5px; 
+    background-color: #888; 
+    cursor: col-resize; 
+    height: 100%;
+    z-index: 1;
+}
+
 .reading-box {
-    flex: 6; 
     background-color: #fff; 
     border-right: 2px solid #ddd; 
-    padding-top: 70px;
-    padding-bottom: 70px;
 }
 
 .question-box {
-    flex: 4; 
     background-color: #f0f0f0; 
-    padding-bottom: 70px;
-    padding-top: 70px;
     color: black;
 }
