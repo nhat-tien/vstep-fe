@@ -1,19 +1,43 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from '@/components/Exams/Exams-UI/Footer/styles.module.css';
-import SubmitButton from '@/components/SubmitButton/SubmitButton';
+import { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import styles from "@/components/Exams/Exams-UI/Footer/styles.module.css";
+import SaveButton from "@/components/SaveButton/SaveButton";
+import { skillOrder } from "@/utils/config/skillConfig";
+import { skillConfig } from "@/utils/config/skillConfig";
+import useTimerAppStore from "@/hooks/useTimerAppStore";
 
-const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOrder }) => {
+const Footer = () => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+  const currentSkill = useMemo(() => skillOrder[currentSkillIndex], [currentSkillIndex]);
+  const totalDurationExamTime = useMemo(() => skillConfig[currentSkill].totalDurationExamTime, [currentSkill]);
 
+  const { reset, pause } = useTimerAppStore({
+    time: totalDurationExamTime,
+    onEnd: () => {
+      if (currentSkill === "writing") {
+        router.push("/exam/speaking/1");
+        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+        setCurrentSkillIndex(nextSkillIndex);
+        reset(0);
+        pause();
+      } else {
+        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+        const nextSkill = skillOrder[nextSkillIndex];
+        setCurrentSkillIndex(nextSkillIndex);
+        router.push(`/exam/${nextSkill}/1`);
+        reset(skillConfig[nextSkill].totalDurationExamTime);
+      }
+    },
+  });
   const skills = {
-    listening: [1, 2, 3], 
+    listening: [1, 2, 3],
     reading: [1, 2, 3, 4],
     writing: [1, 2],
-    speaking: [1]
+    speaking: [1],
   };
 
   const skillTimes = {
@@ -27,7 +51,6 @@ const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOr
   useEffect(() => {
     const firstPart = skills[currentSkill][0];
     setActiveButton(firstPart); // Đặt nút đầu tiên của skill hiện tại là active
-    navigateToPart(currentSkill, firstPart); // Điều hướng đến phần đầu tiên khi skill load
   }, [currentSkill]);
 
   const handleClick = (partNumber) => {
@@ -50,13 +73,19 @@ const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOr
 
   const handleConfirmSubmit = () => {
     setShowConfirmation(false);
-    if (currentSkillIndex < skillOrder.length - 1) {
-      const nextSkillIndex = currentSkillIndex + 1;
-      const nextSkill = skillOrder[nextSkillIndex];
-      setCurrentSkillIndex(nextSkillIndex);
-      setActiveButton(skills[nextSkill][0]); // Đặt nút part 1 của skill tiếp theo là active
-      navigateToPart(nextSkill, 1); // Điều hướng đến part 1 của skill tiếp theo
-    }
+      if (currentSkill === "writing") {
+        router.push("/exam/speaking/1");
+        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+        setCurrentSkillIndex(nextSkillIndex);
+        reset(0);
+        pause();
+      } else {
+        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+        const nextSkill = skillOrder[nextSkillIndex];
+        setCurrentSkillIndex(nextSkillIndex);
+        router.push(`/exam/${nextSkill}/1`);
+        reset(skillConfig[nextSkill].totalDurationExamTime);
+      }
   };
 
   const handleCancelSubmit = () => {
@@ -68,13 +97,18 @@ const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOr
       <div className={styles["footer"]}>
         <div className={styles["skills-container"]}>
           {Object.keys(skills).map((skill, index) => (
-            <div key={skill} className={`${styles["skill-section"]} ${index < currentSkillIndex ? styles['disabled'] : ''}`}>
+            <div
+              key={skill}
+              className={`${styles["skill-section"]} ${index < currentSkillIndex ? styles["disabled"] : ""}`}
+            >
               <div className={styles["button-row"]}>
-                {skills[skill].map(part => (
+                {skills[skill].map((part) => (
                   <button
                     key={part}
-                    className={`${styles['toggle-button']} ${activeButton === part && currentSkill === skill ? styles['active'] : ''} ${index < currentSkillIndex ? styles['disabled-button'] : ''}`}
-                    onClick={() => index <= currentSkillIndex && navigateToPart(skill, part)}
+                    className={`${styles["toggle-button"]} ${activeButton === part && currentSkill === skill ? styles["active"] : ""} ${index < currentSkillIndex ? styles["disabled-button"] : ""}`}
+                    onClick={() =>
+                      index <= currentSkillIndex && navigateToPart(skill, part)
+                    }
                     onMouseDown={() => handleClick(part)}
                     disabled={index > currentSkillIndex}
                   >
@@ -90,33 +124,44 @@ const Footer = ({ currentSkill, currentSkillIndex, setCurrentSkillIndex, skillOr
             </div>
           ))}
         </div>
-        <SubmitButton />
-        <div className={styles['next-skill-container']}>
-        <button 
-          className={styles["next-skill-button"]} 
-          onClick={handleNextSkill} 
-          disabled={currentSkillIndex >= skillOrder.length - 1}
-        >
-          Tiếp tục
-        </button>
-        
-        {showConfirmation && (
-          <>
-          <div className={`${styles['modal-overlay']} ${styles['show']}`} />
-          <div className={`${styles['confirmation-modal']} ${styles['show']}`}>
-              <p>Ấn tiếp tục đồng nghĩa bạn sẽ kết thúc phần thi này và không thể quay lại.</p>
-              <p>Bạn có chắc chắn muốn tiếp tục?</p>
-              <p>Lưu ý, hãy chắc chắn bản thân đã lưu phần thi hiện tại.</p>
-              <button className={styles['confirm-button']} onClick={handleConfirmSubmit}>
-                Có
-              </button>
-              <button className={styles['cancel-button']} onClick={handleCancelSubmit}>
-                Không
-              </button>
-            </div>
-          </>
-        )}
-      </div>
+        <SaveButton />
+        <div className={styles["next-skill-container"]}>
+          <button
+            className={styles["next-skill-button"]}
+            onClick={handleNextSkill}
+            disabled={currentSkillIndex >= skillOrder.length - 1}
+          >
+            Tiếp tục
+          </button>
+
+          {showConfirmation && (
+            <>
+              <div className={`${styles["modal-overlay"]} ${styles["show"]}`} />
+              <div
+                className={`${styles["confirmation-modal"]} ${styles["show"]}`}
+              >
+                <p>
+                  Ấn tiếp tục đồng nghĩa bạn sẽ kết thúc phần thi này và không
+                  thể quay lại.
+                </p>
+                <p>Bạn có chắc chắn muốn tiếp tục?</p>
+                <p>Lưu ý, hãy chắc chắn bản thân đã lưu phần thi hiện tại.</p>
+                <button
+                  className={styles["confirm-button"]}
+                  onClick={handleConfirmSubmit}
+                >
+                  Có
+                </button>
+                <button
+                  className={styles["cancel-button"]}
+                  onClick={handleCancelSubmit}
+                >
+                  Không
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </footer>
   );

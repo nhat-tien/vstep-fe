@@ -5,7 +5,8 @@ import useDebounce from "@/hooks/useDebounce";
 import { useEffect, useState } from "react";
 
 export default function TextBoxAnswer({ questionId, part}) {
-  const [currentText, setCurrentText] = useState("");
+  const answer = useAppStore(state => state[`writingAnswers${part}`]);
+  const [currentText, setCurrentText] = useState(answer[questionId]);
   const setWritingAnswers = useAppStore(state => state.setWritingAnswers);
   const debounceValue = useDebounce(currentText, 1000);
 

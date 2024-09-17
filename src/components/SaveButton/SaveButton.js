@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { useMemo } from "react";
 
-export default function SubmitButton() {
+export default function SaveButton() {
   const { skill, part} = useParams();
   const answers = useAppStore((state) => state[`${skill}Answers${part}`]);
   const isWriting = useMemo(() => skill == "writing", [skill]);

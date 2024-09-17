@@ -19,7 +19,6 @@ export default async function getQuestion(skill, part) {
           : "",
       };
     });
-
     return ModifyData;
   } catch (e) {
     throw new Error("Something wrong" + e.toString());

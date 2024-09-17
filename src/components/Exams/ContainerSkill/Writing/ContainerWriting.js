@@ -1,15 +1,19 @@
 "use client";
-import React, { useState } from 'react';
-import Text from '../../QuestionType/TextType/Text';
+// import Text from '../../QuestionType/TextType/Text';
 import styles from '@/components/Exams/ContainerSkill/Writing/styles.module.css';
 import Image from "@/components/Exams/QuestionType/ImageType/Image";
 import TextBoxAnswer from '@/components/TextBoxAnswer/TextBoxAnswer';
 import { useAppStore } from '@/stores/app-store-provider';
+import useQuestions from '@/hooks/useQuestions';
+import { useParams } from 'next/navigation';
 
-const ContainerWriting = ({ questions = [], part}) => {
+const ContainerWriting = () => {
+  const { questions } = useQuestions();
+  const { part } = useParams();
   const answers = useAppStore(state => state[`writingAnswers${part}`]);
   
   const wordCount = (text) => {
+    console.log(text);
     return text.trim().split(/\s+/).length;
   };
 

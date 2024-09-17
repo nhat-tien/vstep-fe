@@ -1,17 +1,16 @@
 "use client";
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import Audio from '../../QuestionType/AudioType/Audio';
 import MultipleChoice from '../../QuestionType/SelectType/MultipleQuestion';
 import Image from '../../QuestionType/ImageType/Image';
 import styles from '@/components/Exams/ContainerSkill/Listening/styles.module.css';
 import Text from '../../QuestionType/TextType/Text';
-import { useAppStore } from '@/stores/app-store-provider';
-import QuestionSummary from '@/components/QuestionSummary/QuestionSummary';
+import useQuestions from '@/hooks/useQuestions';
 
-const ContainerListen = ({ questions = [], part }) => {
+const ContainerListen = () => {
+  const { questions } = useQuestions();
   const [audioPlayed, setAudioPlayed] = useState(false);
-
-  const totalQuestionsCount = questions.filter(q => q.questionType === 'select').length;
+  
   let multipleChoiceCount = 0;
 
   const handleAudioEnd = () => {

@@ -4,7 +4,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 export const defaultInitState = {
   avatar: "/images/default-avatar.svg",
   currentSkill: "speaking",
-  currentTimeRemain: "",
+  currentTimeRemain: 0,
   listeningAnswers1: {},
   listeningAnswers2: {},
   listeningAnswers3: {},
@@ -38,6 +38,10 @@ export function createAppStore(initState = defaultInitState) {
     setSpeakingAnswers: (questionId, audioUrl, part) => 
     set(state => ({
         [`speakingAnswers${part}`]: {...state[`speakingAnswers${part}`], [questionId]: audioUrl}
+      })),
+    setTimeRemain: (timeRemain) => 
+    set(() => ({
+          currentTimeRemain: timeRemain
       })),
     reset: () => set(defaultInitState)
   }),

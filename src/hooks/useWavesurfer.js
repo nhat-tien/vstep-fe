@@ -31,7 +31,6 @@ export default function useWavesurfer({
               barGap: 1,
               barRadius: 2,
             });
-            console.log("Render in ");
             recordRef.current = wavesurferRef.current.registerPlugin(
               RecordPlugin.create({
                 scrollingWaveform: false,

@@ -3,19 +3,17 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/components/Exams/Exams-UI/Header/styles.module.css'; 
 import getProfile from '@/services/getProfile';
 import Image from "next/image";
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useAppStore } from '@/stores/app-store-provider';
 import QuestionSummary from '@/components/QuestionSummary/QuestionSummary';
 
-const Header = ({ timeRemaining }) => {
+const Header = () => {
+  const timeRemain = useAppStore(state => state.currentTimeRemain)
   const avatar = useAppStore(state => state.avatar);
-  const params = useParams();
-  const part = params.part;
-  const skill = params.skill;
   const router = useRouter();
 
-  const minutes = Math.floor(timeRemaining / 60);
-  const seconds = timeRemaining % 60;
+  const minutes = Math.floor(timeRemain / 60);
+  const seconds = timeRemain % 60;
   const formattedTime = {
     minutes: String(minutes).padStart(2, '0'),
     seconds: String(seconds).padStart(2, '0'),

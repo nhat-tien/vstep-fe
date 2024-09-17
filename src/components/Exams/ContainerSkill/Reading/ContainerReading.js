@@ -1,9 +1,12 @@
+"use client"
 import { useState, useRef } from 'react';
 import Text from '../../QuestionType/TextType/Text';
 import MultipleChoice from '../../QuestionType/SelectType/MultipleQuestion';
 import styles from './styles.module.css';
+import useQuestions from '@/hooks/useQuestions';
 
-const ContainerReading = ({ questions = [] }) => {
+const ContainerReading = () => {
+  const { questions } = useQuestions();
   const [leftWidth, setLeftWidth] = useState(60);
   const resizerRef = useRef(null);
 

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Text from '../../QuestionType/TextType/Text';
 import Image from "../../QuestionType/ImageType/Image";
 import styles from '@/components/Exams/ContainerSkill/Speaking/styles.module.css';
-import WaveSurfer from 'wavesurfer.js';
 import { useRouter } from 'next/navigation';
 
 const ContainerSpeaking = ({ questions = [] }) => {
@@ -97,14 +96,14 @@ const ContainerSpeaking = ({ questions = [] }) => {
 
   return (
     <div className={styles['container-Speaking-Wrapper']}>
-      {showMicCheck && (
+      {/*showMicCheck && (
         <div className={styles['micCheckModal']}>
           <div className={styles['micCheckContent']}>
             <h2>Vui lòng kiểm tra và đeo mic</h2>
             <p>Bài thi nói bắt đầu sau: {micCheckTimeLeft} giây</p>
           </div>
         </div>
-      )}
+      )*/}
 
       {!showMicCheck && (
         <div className={styles['container-Speaking']}>

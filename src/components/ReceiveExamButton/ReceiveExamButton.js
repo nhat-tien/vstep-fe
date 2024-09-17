@@ -20,7 +20,7 @@ export default function ReceiveExamButton() {
     const res = await postAvatar(avatar);
 
     if(res.status == 200) {
-       router.push("/exam/speaking/1");
+       router.push("/exam/listening/1");
     } else {
       toast.error("Something wrong with avatar")
     }

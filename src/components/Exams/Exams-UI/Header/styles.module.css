@@ -22,7 +22,6 @@
 
 .user-name {
   font-size: 18px; /* Kích thước chữ cho tên người dùng */
-  font-family: Arial, Helvetica, sans-serif;
   flex: 1; /* Làm cho tên người dùng chiếm không gian còn lại bên trái */
   color: white;
   position: fixed;
@@ -39,7 +38,6 @@
 
 .timer {
   font-size: 16px; /* Kích thước chữ cho thời gian */
-  font-family: Arial, sans-serif; /* Font chữ */
   display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các số */
   align-items: center; /* Căn giữa các số theo chiều dọc */
   justify-content: center;
@@ -74,16 +72,17 @@
 
 .submit-button {
   display: fixed; 
-  background-color: #ff1100;
+  background-color: var(--error-color);
   color: white;
   border: none;
   padding: 6px 21px;
-  font-size: 1.52rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
   border-radius: 5px;
   max-width: 300px; 
   z-index: 1000;
+  font-family: var(--primary-font);
 }
 
 .submit-button:hover {
