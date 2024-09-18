@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react";
 import styles from "@/components/Login/styles.module.css";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {login} from "@/services/auth";
 import toast from "react-hot-toast";
@@ -32,18 +31,7 @@ const handlelogin = async (e) => {
   };
 
   return (
-    <div className={styles["login-container"]}>
-      <div className={styles["logo"]}>
-        <Image
-          src="/images/Quốc Huy Việt Nam 1.svg"
-          alt="Logo"
-          width={85}
-          height={85}
-        />
-      </div>
-      <h1 className={styles["title"]}>Thi thử VSTEP</h1>
       <form className={styles["login-form"]} onSubmit={handlelogin}>
-        <div className={styles["form-groups"]}>
           <div className={styles["form-group"]}>
             <label htmlFor="email">Nhập tài khoản</label>
             <input //Khi người dùng ấn vào label Email, hàm input sẽ được gọi, quá trình nhập thông tin bắt đầu.
@@ -72,9 +60,7 @@ const handlelogin = async (e) => {
               {loading ? "Đang đăng nhập..." : "Đăng nhập"}
             </button>
           </div>
-        </div>
       </form>
-    </div>
   );
 };
 export default Login;

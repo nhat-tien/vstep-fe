@@ -18,7 +18,7 @@ export const TIMELINE = [
   {
     name: "Recording 1",
     type: "recording",
-    duration: 10,
+    duration: 40,
     // duration: 180,
   },
   {

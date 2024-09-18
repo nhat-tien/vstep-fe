@@ -1,41 +1,13 @@
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  background: #007bff;
-}
-.logo {
-  display: flex;
-  align-items: center;
-}
-.title
-{
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  font-weight: 800;
-  font-size: 50px;
-}
 .login-form {
+  margin-top: 3em;
   border-radius: 8px;
-  padding: 40px;
   text-align: center;
-  width: 100%;
-  max-width: 400px;
+  width: 500px;
 }
 
 .login-form h2 {
   margin-bottom: 24px;
   color: #007bff;
-}
-
-.form-groups {
-  margin-bottom: 16px;
-  width: 500px;
-  position: relative;
-  left: -70px;
 }
 
 .form-group {

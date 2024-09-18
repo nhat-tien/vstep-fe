@@ -10,9 +10,7 @@ const Page = () => {
   const answers3 = useAppStore(state => state.speakingAnswers3);
 
   useEffect(() => {
-    for(let i = 1; i <= 3;i++) {
 
-    }
   })
 
     return (

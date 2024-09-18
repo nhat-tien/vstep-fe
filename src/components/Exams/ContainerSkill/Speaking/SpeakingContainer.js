@@ -5,7 +5,8 @@ import { TIMELINE } from "@/utils/config/speakingConfig";
 import useTimerAppStore from "@/hooks/useTimerAppStore";
 import useSpeakingQuestions from "@/hooks/useSpeakingQuestions";
 import Audio from "@/components/Exams/QuestionType/AudioType/Audio";
-import Picture from "@/components/Exams/QuestionType/ImageType/Image";
+import Picture from "../../QuestionType/ImageType/Image";
+import Image from "next/image";
 import useWavesurfer from "@/hooks/useWavesurfer";
 import { useAppStore } from "@/stores/app-store-provider";
 import { useRouter } from "next/navigation";
@@ -17,8 +18,8 @@ const ContainerSpeaking = () => {
   const setSpeakingAnswers = useAppStore((state) => state.setSpeakingAnswers);
   const { waveformRef, startRecording, stopRecording, audioUrl, isRecording } =
   useWavesurfer({
-    width: 100,
-    height: 50,
+    width: 300,
+    height: 100,
   });
   const [part, setPart] = useState(1);
   const { questions } = useSpeakingQuestions({ part });
@@ -78,8 +79,17 @@ const ContainerSpeaking = () => {
       {currentPhaseType == "prepare-mic" && (
         <div className={styles["micCheckModal"]}>
           <div className={styles["micCheckContent"]}>
-            <h2>Vui lòng kiểm tra và đeo mic</h2>
-            <p>Bài thi nói bắt đầu sau: {timeRemain} giây</p>
+            <Image
+              width={180}
+              height={180}
+              alt="person with headphone"
+              src={"/images/person-with-headphone.png"}
+            />
+            <h3>Bạn đeo tai nghe để làm bài thi nói</h3>
+            <p>Bạn có <strong>60s</strong> để chuẩn bị</p>
+            <p className={styles['micCheckContent__time-remain']}>{timeRemain}s</p>
+            <p>Bài làm sẽ được thu âm trực tiếp</p>
+            <p>Trong lúc thu âm không tương tác với hệ thống</p>
           </div>
         </div>
       )}
@@ -125,11 +135,11 @@ const ContainerSpeaking = () => {
             border: "1px solid #ddd",
             borderRadius: "4px",
             marginTop: "1rem",
-            width: "100px"
+            width: "300px"
           }}
           ref={waveformRef}
         />
-        <div>
+        <div className={styles["record-container__desc"]}>
           <p>BÀI NÓI ĐANG ĐƯỢC THU ÂM TRỰC TIẾP</p>
           <p>TRONG QUÁ TRÌNH THU ÂM KHÔNG ĐƯỢC THAO TÁC VỚI HỆ THỐNG</p>
         </div>

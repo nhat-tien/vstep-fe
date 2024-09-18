@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { env } from "./env";
 
-export const BASE_URL = `http://${env("backendIP")}/api/${env("apiVersion")}`;
+export const BASE_URL = `https://${env("backendIP")}/api/${env("apiVersion")}`;
 
 async function get(url,  opts = { auth: true}) {
   const accessToken = cookies().get("access_token");

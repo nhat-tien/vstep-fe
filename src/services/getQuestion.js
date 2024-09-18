@@ -15,7 +15,7 @@ export default async function getQuestion(skill, part) {
       return {
         ...item,
         fileUrl: item.fileUrl
-          ? `http://${env("backendIP")}/storage/${item.fileUrl}`
+          ? `https://${env("backendIP")}/storage/${item.fileUrl}`
           : "",
       };
     });
