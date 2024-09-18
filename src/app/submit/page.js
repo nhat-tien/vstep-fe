@@ -1,20 +1,19 @@
+"use client"
+import { useEffect } from "react";
 import styles from "./styles.module.css";
-import postAnswers from '@/services/postAnswers'
+import { useAppStore } from "@/stores/app-store-provider";
+
+
 const Page = () => {
-    const Submit = async () => {
-        try {
-          const result = await postAnswers(/*answers*/);
-          if (result.status) {
-            console.log('Gửi thành công!');
-          } else {
-            console.log('Gửi thất bại!');
-          }
-        } catch (error) {
-          console.error('Lỗi khi gửi dữ liệu:', error);
-        }
-      };
-      
-    Submit();
+  const answers1 = useAppStore(state => state.speakingAnswers1);
+  const answers2 = useAppStore(state => state.speakingAnswers2);
+  const answers3 = useAppStore(state => state.speakingAnswers3);
+
+  useEffect(() => {
+    for(let i = 1; i <= 3;i++) {
+
+    }
+  })
 
     return (
         <div className={styles['submit-page']}>

@@ -12,13 +12,14 @@ export const TIMELINE = [
   },
   {
     name: "Ghi âm sau",
-    type: "prepare",
+    type: "prepare-record",
     duration: 3
   },
   {
     name: "Recording 1",
     type: "recording",
-    duration: 180
+    duration: 10,
+    // duration: 180,
   },
   {
     name: "Thời gian chuẩn bị còn",
@@ -32,13 +33,15 @@ export const TIMELINE = [
   },
   {
     name: "Ghi âm sau",
-    type: "prepare",
-    duration: 60
+    type: "prepare-record",
+    // duration: 60,
+    duration: 3 
   },
   {
     name: "Recording 2",
     type: "recording",
-    duration: 180
+    duration: 10,
+    //duration: 180
   },
   {
     name: "Thời gian chuẩn bị còn",
@@ -52,12 +55,14 @@ export const TIMELINE = [
   },
   {
     name: "Ghi âm sau",
-    type: "prepare",
-    duration: 60
+    type: "prepare-record",
+    // duration: 60,
+    duration: 3
   },
   {
     name: "Recording 3",
     type: "recording",
-    duration: 240
+    duration: 10,
+    // duration: 240
   },
 ]

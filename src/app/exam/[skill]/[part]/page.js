@@ -1,6 +1,6 @@
 import ContainerListen from "@/components/Exams/ContainerSkill/Listening/ContainerListen";
 import ContainerReading from "@/components/Exams/ContainerSkill/Reading/ContainerReading";
-import ContainerSpeaking from "@/components/SpeakingContainTest";
+import ContainerSpeaking from "@/components/Exams/ContainerSkill/Speaking/SpeakingContainer";
 import ContainerWriting from "@/components/Exams/ContainerSkill/Writing/ContainerWriting";
 
 const PartPage = ({ params: {skill } }) => {

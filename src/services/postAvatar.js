@@ -19,10 +19,10 @@ function DataURIToBlob(dataURI) {
 
 export default async function postAvatar(imgBase64) {
   try {
-    const { examId } = await getSchedules();
+    const { scheduleId } = await getSchedules();
     const file = DataURIToBlob(imgBase64);
     const data = new FormData();
-    data.append("examScheduleId", examId);
+    data.append("examScheduleId", scheduleId);
     data.append("avatar", file, "avatar.jpg");
     const res = http.post("/schedules/avatar", data, {
       formData: true,

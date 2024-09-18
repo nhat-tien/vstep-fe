@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './styles.module.css'; 
 
-const Audio = ({ question, onEnd }) => {
+const Audio = ({ question, onEnd, autoPlay = false, disable = false}) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -16,10 +16,16 @@ const Audio = ({ question, onEnd }) => {
 
     audio.addEventListener('seeking', preventSeek);
 
+    if(autoPlay) {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play();
+      }
+    }
+
     return () => {
       audio.removeEventListener('seeking', preventSeek);
     };
-  }, []);
+  }, [question]);
 
   const handlePlay = () => {
     if (audioRef.current && !isPlaying) {
@@ -47,9 +53,9 @@ const Audio = ({ question, onEnd }) => {
         className={styles['audioPlayer']}
       />
       <button 
-        className={`${styles['playButton']} ${isPlaying ? styles.playing : ''}`} 
+        className={`${styles['playButton']} ${isPlaying || disable ? styles.playing : ''}`} 
         onClick={handlePlay}
-        disabled={isPlaying}
+        disabled={isPlaying || disable}
       >
         Play
       </button>

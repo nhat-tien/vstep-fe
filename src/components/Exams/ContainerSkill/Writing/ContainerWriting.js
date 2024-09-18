@@ -13,7 +13,6 @@ const ContainerWriting = () => {
   const answers = useAppStore(state => state[`writingAnswers${part}`]);
   
   const wordCount = (text) => {
-    console.log(text);
     return text.trim().split(/\s+/).length;
   };
 

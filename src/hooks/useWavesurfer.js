@@ -12,7 +12,7 @@ export default function useWavesurfer({
   const wavesurferRef = useRef(null);
   const waveformRef = useRef(null);
   const recordRef = useRef(null);
-  const [audioUrl, setAudioUrl] = useState(null);
+  const [audioUrl, setAudioUrl] = useState("");
   const [isRecording, setIsRecording] = useState(false);
 
   useEffect(() => {

@@ -27,9 +27,11 @@ export default function useTimerAppStore({
     return () => clearInterval(timer);
   }, [timeRemain, isPause]);
 
-  const pause = useCallback(() => setIsPause(!isPause));
+  const pause = useCallback(() => setIsPause(true));
+
+  const restart = useCallback(() => setIsPause(false))
 
   const reset = useCallback((time) => setTimeRemain(time));
 
-  return { timeRemain, pause, reset};
+  return { timeRemain, pause, reset, restart};
 }
