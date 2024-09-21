@@ -17,6 +17,9 @@ export const defaultInitState = {
   speakingAnswers1: {},
   speakingAnswers2: {},
   speakingAnswers3: {},
+  audioSpeaking1:"",
+  audioSpeaking2:"",
+  audioSpeaking2:"",
 }
 
 export function createAppStore(initState = defaultInitState) {
@@ -38,6 +41,10 @@ export function createAppStore(initState = defaultInitState) {
     setSpeakingAnswers: (questionId, audioUrl, part) => 
     set(state => ({
         [`speakingAnswers${part}`]: {...state[`speakingAnswers${part}`], [questionId]: audioUrl}
+      })),
+    setAudioSpeaking: (audioUrl, part) => 
+    set(() => ({
+        [`audioSpeaking${part}`]: audioUrl
       })),
     setTimeRemain: (timeRemain) => 
     set(() => ({

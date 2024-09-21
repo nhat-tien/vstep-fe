@@ -2,8 +2,7 @@ export const TIMELINE = [
   {
     name: "Prepare 60",
     type: "prepare-mic",
-    duration: 3
-    // duration: 60
+    duration: 60,
   },
   {
     name: "question 1",
@@ -18,7 +17,7 @@ export const TIMELINE = [
   {
     name: "Recording 1",
     type: "recording",
-    duration: 40,
+    duration: 10,
     // duration: 180,
   },
   {
@@ -34,8 +33,8 @@ export const TIMELINE = [
   {
     name: "Ghi âm sau",
     type: "prepare-record",
+    duration: 3, 
     // duration: 60,
-    duration: 3 
   },
   {
     name: "Recording 2",
@@ -56,8 +55,8 @@ export const TIMELINE = [
   {
     name: "Ghi âm sau",
     type: "prepare-record",
-    // duration: 60,
     duration: 3
+    // duration: 60,
   },
   {
     name: "Recording 3",

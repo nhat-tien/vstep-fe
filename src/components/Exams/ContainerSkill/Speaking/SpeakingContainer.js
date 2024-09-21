@@ -10,12 +10,16 @@ import Image from "next/image";
 import useWavesurfer from "@/hooks/useWavesurfer";
 import { useAppStore } from "@/stores/app-store-provider";
 import { useRouter } from "next/navigation";
+import postAudioAnswers from "@/services/postAudioAnswers";
+import toast from "react-hot-toast";
+import getFileFromUrl from "@/services/getFilesFromUrl";
 
 const ContainerSpeaking = () => {
   const router = useRouter();
   const [currentPhase, setCurrentPhase] = useState(0);
   const currentPhaseType = useMemo(() => TIMELINE[currentPhase]?.type, [currentPhase]);
   const setSpeakingAnswers = useAppStore((state) => state.setSpeakingAnswers);
+  const setAudioSpeaking = useAppStore(state => state.setAudioSpeaking);
   const { waveformRef, startRecording, stopRecording, audioUrl, isRecording } =
   useWavesurfer({
     width: 300,
@@ -43,9 +47,19 @@ const ContainerSpeaking = () => {
   }, [currentPhase]);
 
   useEffect(() => {
-    if(questions[0]) {
-      setSpeakingAnswers(questions[0].questionId, audioUrl, part);
+    const handleSaveQuestion = async () => {
+      if(questions[0]) {
+        setSpeakingAnswers(questions[0].questionId, audioUrl, part);
+        const data = await getFileFromUrl(audioUrl);
+        const res = await postAudioAnswers(questions[0].questionId, data);
+        if(res.status) {
+          await setAudioSpeaking(res.url,part);
+        } else {
+          toast.error(res.message)
+        }
+      }
     }
+    handleSaveQuestion()
   }, [audioUrl])
 
   const handleChangePhase = () => {
