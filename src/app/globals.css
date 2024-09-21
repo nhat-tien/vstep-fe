@@ -37,6 +37,7 @@
   --primary-color: #0078d7;
   --error-color: #cc3123;
   --warning-color: #cc8f23;
+  --success-color: #057816;
 }
 
 /* @media (prefers-color-scheme: dark) { */
@@ -53,7 +54,7 @@
 html {
 	font-size: 15px;
   font-family: var(--primary-font);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 html,

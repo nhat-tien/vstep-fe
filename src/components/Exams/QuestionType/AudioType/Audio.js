@@ -57,7 +57,6 @@ const Audio = ({ question, onEnd, autoPlay = false, disable = false}) => {
         onClick={handlePlay}
         disabled={isPlaying || disable}
       >
-        Play
       </button>
     </div>
   );

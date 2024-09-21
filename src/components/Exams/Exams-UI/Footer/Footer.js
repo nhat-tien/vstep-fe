@@ -6,14 +6,21 @@ import SaveButton from "@/components/SaveButton/SaveButton";
 import { skillOrder } from "@/utils/config/skillConfig";
 import { skillConfig } from "@/utils/config/skillConfig";
 import useTimerAppStore from "@/hooks/useTimerAppStore";
+import Button from "@/components/Button/Button";
 
 const Footer = () => {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-  const currentSkill = useMemo(() => skillOrder[currentSkillIndex], [currentSkillIndex]);
-  const totalDurationExamTime = useMemo(() => skillConfig[currentSkill].totalDurationExamTime, [currentSkill]);
+  const currentSkill = useMemo(
+    () => skillOrder[currentSkillIndex],
+    [currentSkillIndex],
+  );
+  const totalDurationExamTime = useMemo(
+    () => skillConfig[currentSkill].totalDurationExamTime,
+    [currentSkill],
+  );
 
   const { reset, pause } = useTimerAppStore({
     time: totalDurationExamTime,
@@ -73,19 +80,19 @@ const Footer = () => {
 
   const handleConfirmSubmit = () => {
     setShowConfirmation(false);
-      if (currentSkill === "writing") {
-        router.push("/exam/speaking/1");
-        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
-        setCurrentSkillIndex(nextSkillIndex);
-        reset(0);
-        pause();
-      } else {
-        const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
-        const nextSkill = skillOrder[nextSkillIndex];
-        setCurrentSkillIndex(nextSkillIndex);
-        router.push(`/exam/${nextSkill}/1`);
-        reset(skillConfig[nextSkill].totalDurationExamTime);
-      }
+    if (currentSkill === "writing") {
+      router.push("/exam/speaking/1");
+      const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+      setCurrentSkillIndex(nextSkillIndex);
+      reset(0);
+      pause();
+    } else {
+      const nextSkillIndex = (currentSkillIndex + 1) % skillOrder.length;
+      const nextSkill = skillOrder[nextSkillIndex];
+      setCurrentSkillIndex(nextSkillIndex);
+      router.push(`/exam/${nextSkill}/1`);
+      reset(skillConfig[nextSkill].totalDurationExamTime);
+    }
   };
 
   const handleCancelSubmit = () => {
@@ -124,16 +131,16 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <SaveButton />
         <div className={styles["next-skill-container"]}>
-          <button
-            className={styles["next-skill-button"]}
+          <Button
             onClick={handleNextSkill}
             disabled={currentSkillIndex >= skillOrder.length - 1}
+            backgroundColor={"var(--success-color)"}
           >
             Tiếp tục
-          </button>
-
+          </Button>
+        </div>
+        <SaveButton />
           {showConfirmation && (
             <>
               <div className={`${styles["modal-overlay"]} ${styles["show"]}`} />
@@ -161,7 +168,6 @@ const Footer = () => {
               </div>
             </>
           )}
-        </div>
       </div>
     </footer>
   );

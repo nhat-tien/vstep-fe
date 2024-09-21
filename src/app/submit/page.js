@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useMemo } from "react";
 import styles from "./styles.module.css";
 import { useAppStore } from "@/stores/app-store-provider";
 

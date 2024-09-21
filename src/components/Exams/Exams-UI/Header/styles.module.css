@@ -5,7 +5,7 @@
   width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
   background-color: #0078d7; /* Nền trắng với độ trong suốt nhẹ */
   color: #333; /* Màu chữ */
-  padding: 10px 20px; /* Khoảng cách bên trong */
+  padding: 0.3em 1em; /* Khoảng cách bên trong */
   border-bottom: 1px solid #ddd; /* Đường viền dưới để phân cách với nội dung khác */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
   display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các phần tử con */
@@ -15,37 +15,27 @@
 }
 
 .avatar-container {
-  position: fixed;
-  left: 9px;
-  top: 6px
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
-
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
+}
 .user-name {
   font-size: 18px; /* Kích thước chữ cho tên người dùng */
-  flex: 1; /* Làm cho tên người dùng chiếm không gian còn lại bên trái */
   color: white;
-  position: fixed;
-  left: 70px;
-}
-
-.timer-container {
-  display: flex; /* Đặt chế độ hiển thị là flex để căn giữa đồng hồ */
-  justify-content: center; /* Căn giữa đồng hồ theo chiều ngang */
-  flex: 1; /* Đảm bảo container này chiếm không gian còn lại */
-  position:relative;
-  left: 500px;
 }
 
 .timer {
-  font-size: 16px; /* Kích thước chữ cho thời gian */
-  display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các số */
-  align-items: center; /* Căn giữa các số theo chiều dọc */
-  justify-content: center;
-  position: relative;
-  left: -500px;
+  margin-left: calc(-100%);
 }
 
-.timer span {
+.timer span:not(.colon) {
   display: inline-block; /* Để các số nằm trên cùng một hàng */
   width: 20px; /* Chiều rộng của ô vuông */
   height: 40px; /* Chiều cao của ô vuông */
@@ -62,6 +52,7 @@
 .colon {
   font-size: 24px; /* Kích thước chữ cho dấu ":" */
   margin: 0 8px; /* Khoảng cách giữa dấu ":" và các số */
+  color: white; /* Màu chữ */
 }
 
 .summary{

@@ -32,7 +32,8 @@ const MultipleChoice = ({ question, questionNumber, skill}) => {
                   onChange={handleOptionChange}
                   className={styles["radio-button"]}
                 />
-                {labels[index]}: {option.text}
+                <strong>{labels[index]}.</strong> {" "}
+                <span>{option.text}</span>
               </label>
             </li>
           ))

@@ -203,7 +203,8 @@
   filter: brightness(85%);
 }
 .next-skill-container{
-  bottom: -14px;
-  left: 10px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto 0.5em;
 }

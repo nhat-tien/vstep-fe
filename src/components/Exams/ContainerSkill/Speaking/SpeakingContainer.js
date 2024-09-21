@@ -124,7 +124,7 @@ const ContainerSpeaking = () => {
         <div className={styles["micCheckModal"]}>
           <div className={styles["micCheckContent"]}>
             <h2>Thời gian chuẩn bị còn</h2>
-            <p>{timeRemain}s</p>
+            <p>{timeRemain}<small>s</small></p>
           </div>
         </div>
       )}
@@ -132,7 +132,7 @@ const ContainerSpeaking = () => {
         <div className={styles["micCheckModal"]}>
           <div className={styles["micCheckContent"]}>
             <h2>Ghi âm sau</h2>
-            <p>{timeRemain}s</p>
+            <p>{timeRemain}<small>s</small></p>
           </div>
         </div>
       )}

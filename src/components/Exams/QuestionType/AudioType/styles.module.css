@@ -1,49 +1,44 @@
 /* Container của audio và nút play */
 .audioContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
-  }
-  
-  /* Custom giao diện thanh audio */
-  .audioPlayer {
-    width: 100%;
-    pointer-events: none; /* Vẫn ngăn tương tác nhưng giữ lại màu */
-    opacity: 0.7; /* Làm cho thanh mờ để báo hiệu không thể tương tác */
-    border-radius: 5px; /* Góc vuông nhẹ hơn */
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 40px; /* Tăng chiều cao cho thanh audio */
-  }
+  position: relative;
+  margin: 10px 0;
+}
+
+/* Custom giao diện thanh audio */
+.audioPlayer {
+  --bg-color: #fff;
+  width: 100%;
+  pointer-events: none; /* Vẫn ngăn tương tác nhưng giữ lại màu */
+  background-color: var(--bg-color);
+  border-radius: 5px; /* Góc vuông nhẹ hơn */
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px; /* Tăng chiều cao cho thanh audio */
+}
+
+.audioPlayer::-webkit-media-controls-panel {
+  background-color: var(--bg-color); 
+}
   
   /* Nút Play tùy chỉnh */
   .playButton {
-    background-color: #0078d7;
-    color: white;
-    border: none;
-    padding: 0 16px; /* Điều chỉnh khoảng cách bên trong cho nút */
-    font-size: 16px;
-    border-radius: 5px; /* Góc vuông nhẹ */
-    cursor: pointer;
-    margin-left: 10px;
-    height: 40px; /* Chiều cao bằng với thanh audio */
-    display: flex;
-    align-items: center; /* Căn giữa chữ trong nút */
-    justify-content: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Thêm hiệu ứng hover */
-  .playButton:hover {
-    background-color: #024b88;
-  }
-  
-  /* Khi đang phát */
-  .playButton.playing {
-    background-color: #6c757d; /* Màu xám khi đã phát */
-    cursor: not-allowed;
-    opacity: 0.6; /* Giảm độ sáng */
-  }
-  
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px; /* Góc vuông nhẹ */
+  cursor: pointer;
+  height: 100%; /* Chiều cao bằng với thanh audio */
+  width: 60px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Khi đang phát */
+.playButton.playing {
+  cursor: not-allowed;
+  opacity: 0.6; /* Giảm độ sáng */
+}
+

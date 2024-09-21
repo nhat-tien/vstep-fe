@@ -5,6 +5,7 @@ import { useAppStore } from "@/stores/app-store-provider";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { useMemo } from "react";
+import Button from "../Button/Button";
 
 export default function SaveButton() {
   const { skill, part} = useParams();
@@ -20,7 +21,7 @@ export default function SaveButton() {
 
   return (
     <div className={styles["submit-btn-container"]}>
-      <button className={styles["submit-btn"]} onClick={handleSubmit}>lưu bài</button>
+      <Button onClick={handleSubmit}>Lưu bài</Button>
     </div>
   );
 }
