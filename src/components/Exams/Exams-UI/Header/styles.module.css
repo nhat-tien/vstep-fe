@@ -1,0 +1,159 @@
+.header {
+  position: fixed; /* Đặt vị trí cố định trên màn hình */
+  top: 0; /* Khoảng cách từ trên cùng của màn hình */
+  left: 0; /* Khoảng cách từ bên trái của màn hình */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
+  background-color: #0078d7; /* Nền trắng với độ trong suốt nhẹ */
+  color: #333; /* Màu chữ */
+  padding: 0.3em 1em; /* Khoảng cách bên trong */
+  border-bottom: 1px solid #ddd; /* Đường viền dưới để phân cách với nội dung khác */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+  display: flex; /* Đặt chế độ hiển thị là flex để căn chỉnh các phần tử con */
+  justify-content: space-between; /* Căn chỉnh các phần tử con cách xa nhau */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  z-index: 900; /* Đảm bảo nó nằm trên các phần tử khác */
+}
+
+.avatar-container {
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
+}
+.user-name {
+  font-size: 18px; /* Kích thước chữ cho tên người dùng */
+  color: white;
+}
+
+.timer {
+  margin-left: calc(-100%);
+}
+
+.timer span:not(.colon) {
+  display: inline-block; /* Để các số nằm trên cùng một hàng */
+  width: 20px; /* Chiều rộng của ô vuông */
+  height: 40px; /* Chiều cao của ô vuông */
+  background-color: rgb(255, 115, 0); /* Màu nền của ô vuông */
+  color: white; /* Màu chữ */
+  font-size: 18px; /* Kích thước chữ */
+  font-weight: bold; /* Đậm chữ */
+  text-align: center; /* Căn giữa chữ */
+  line-height: 40px; /* Căn giữa chữ theo chiều dọc */
+  margin: 0 2px; /* Khoảng cách giữa các ô vuông */
+  border-radius: 3px; /* Góc bo tròn cho ô vuông */
+}
+
+.colon {
+  font-size: 24px; /* Kích thước chữ cho dấu ":" */
+  margin: 0 8px; /* Khoảng cách giữa dấu ":" và các số */
+  color: white; /* Màu chữ */
+}
+
+.summary{
+  position: fixed;
+  top: 10px;
+  right: 200px;
+}
+
+.submit-button {
+  display: fixed; 
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  padding: 6px 21px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 5px;
+  max-width: 300px; 
+  z-index: 1000;
+  font-family: var(--primary-font);
+}
+
+.submit-button:hover {
+  background-color: #830000;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); 
+  }
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000; 
+  opacity: 0; 
+  animation: fadeInScale 0.3s ease forwards; 
+}
+
+@keyframes fadeInOverlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  animation: fadeInOverlay 0.3s ease forwards; 
+}
+
+
+.confirm-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}

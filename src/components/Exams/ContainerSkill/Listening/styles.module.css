@@ -1,0 +1,23 @@
+.container-listen-wrapper {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
+ /* Chiều cao của viewport để container nằm giữa trang */
+}
+.container-listen {
+    position: relative;
+    width: 1000px; 
+    overflow-y: auto; /* Cho phép cuộn */
+    background-color: white; /* Đặt màu nền */
+    color: black; /* Đặt màu chữ */
+    padding: 10px; /* Khoảng cách bên trong */
+    margin-bottom: 50px; /* Khoảng trống để tránh bị footer che */
+  }
+  
+  .container-listen::after {
+    content: ""; /* Tạo một khoảng trắng ở cuối */
+    display: block;
+    height: 100px; /* Chiều cao của khoảng trống thêm */
+  }
+  /* Đảm bảo phần tử hiển thị số câu hỏi đã chọn nằm cố định trên màn hình */  

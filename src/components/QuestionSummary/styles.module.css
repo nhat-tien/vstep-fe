@@ -1,0 +1,8 @@
+.question-summary {
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt nhẹ */
+    color: #333; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Góc bo tròn */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo hiệu ứng nổi bật */
+    font-size: 16px; /* Kích thước chữ */
+  }

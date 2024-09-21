@@ -1,0 +1,44 @@
+/* Container của audio và nút play */
+.audioContainer {
+  position: relative;
+  margin: 10px 0;
+}
+
+/* Custom giao diện thanh audio */
+.audioPlayer {
+  --bg-color: #fff;
+  width: 100%;
+  pointer-events: none; /* Vẫn ngăn tương tác nhưng giữ lại màu */
+  background-color: var(--bg-color);
+  border-radius: 5px; /* Góc vuông nhẹ hơn */
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px; /* Tăng chiều cao cho thanh audio */
+}
+
+.audioPlayer::-webkit-media-controls-panel {
+  background-color: var(--bg-color); 
+}
+  
+  /* Nút Play tùy chỉnh */
+  .playButton {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px; /* Góc vuông nhẹ */
+  cursor: pointer;
+  height: 100%; /* Chiều cao bằng với thanh audio */
+  width: 60px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Khi đang phát */
+.playButton.playing {
+  cursor: not-allowed;
+  opacity: 0.6; /* Giảm độ sáng */
+}
+

@@ -1,0 +1,213 @@
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ccc; /* Màu nền tối cho footer */
+  border-top: 1px solid #ddd;
+  padding: 0.5rem 0; /* Giảm padding để layout gọn hơn */
+  z-index: 500;
+  display: fixed;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  max-width: 100%; /* Chiều rộng tối đa */
+  margin: 0 auto;
+}
+
+.skills-container {
+  display: flex;
+  gap: 1px; /* Khoảng cách nhỏ giữa các skill */
+  align-items: center;
+  padding: 0.5px; /* Padding để tạo khoảng cách trực quan */
+}
+
+.skill-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #4a4a4a; /* Màu nền xám đậm hơn */
+  border-radius: 0px; /* Góc bo tròn nhẹ cho section */
+  padding: 5px 5px; /* Padding gọn hơn */
+  min-width: 100px; /* Chiều rộng nhỏ hơn cho skill section */
+  margin: 0 3px; /* Khoảng cách nhỏ giữa các section */
+}
+
+.phase-header {
+  margin: 5px 0; /* Khoảng cách trên và dưới đồng nhất */
+  width: 100%;
+  text-align: center;
+}
+
+.phase-title {
+  font-size: 14px; /* Kích thước font nhỏ hơn */
+  margin: 0;
+  color: #fff;
+  font-weight: bold; /* Font đậm để nhấn mạnh */
+}
+
+.button-row {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 8px; /* Padding gọn hơn */
+  font-size: 12px; /* Kích thước font nhỏ hơn để gọn gàng */
+  background-color: #ccc; /* Màu đỏ tương phản hơn */
+  color: black;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  transition: background-color 0.2s; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.toggle-button.active {
+  background-color: #d9534f; /* Màu khác khi kích hoạt */
+}
+
+.disabled-button {
+  background-color: #ccc; /* Màu xám nhạt cho trạng thái vô hiệu hóa */
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.disabled {
+  color: #ccc; /* Màu chữ xám nhạt cho trạng thái vô hiệu hóa */
+}
+
+.save-button {
+  background-color: #428bca; /* Màu xanh dương cho nút Lưu */
+  padding: 8px 16px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin: 0 5px; /* Khoảng cách nhỏ để tách nút */
+  cursor: pointer;
+}
+
+.continue-button {
+  background-color: #5cb85c; /* Màu xanh lá cho nút Tiếp tục */
+  padding: 8px 16px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); 
+  }
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000; 
+  opacity: 0; 
+  animation: fadeInScale 0.3s ease forwards; 
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@keyframes fadeInOverlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  animation: fadeInOverlay 0.3s ease forwards; 
+}
+
+
+.confirm-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.next-skill-button{
+  background-color: var(--error-color); 
+  color: #fff;
+  background-color: green;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 3px;
+  border: none;
+  text-transform: uppercase;
+  padding: 0.8em 1.7em;
+  width: 120px;
+  height: 40.5px;
+  cursor: pointer;
+}
+
+.next-skill-button:hover {
+  filter: brightness(85%);
+}
+.next-skill-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto 0.5em;
+}

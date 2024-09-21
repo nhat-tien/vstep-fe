@@ -1,0 +1,26 @@
+.container-Writing-Wrapper {
+    padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
+    min-height: 100vh; /* Đảm bảo container chiếm ít nhất chiều cao của viewport */
+}
+
+.container-Writing {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Đặt các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+.readingBox {
+    width: 100%;
+    max-width: 800px; /* Đặt chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa */
+}
+
+.wordCountBox {
+    margin-top: 10px;
+    margin-bottom: 10px; /* Khoảng cách dưới cho bộ đếm từ */
+    font-size: 14px; /* Kích thước chữ của bộ đếm từ */
+    color: #555; /* Màu chữ của bộ đếm từ */
+
+}

@@ -1,0 +1,24 @@
+.submit-btn {
+  background-color: var(--error-color); 
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 3px;
+  border: none;
+  text-transform: uppercase;
+  padding: 0.8em 1.7em;
+  width: max-content;
+  height: max-content;
+  cursor: pointer;
+  font-family: var(--primary-font);
+}
+
+.submit-btn:hover {
+  filter: brightness(85%);
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

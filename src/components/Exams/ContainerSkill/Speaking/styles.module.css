@@ -1,0 +1,56 @@
+.container-Speaking-Wrapper {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  padding-top: 60px; /* Khoảng cách từ trên cùng để không bị che bởi header */
+  padding-bottom: 105px;
+  min-height: 100vh; /* Đảm bảo container chiếm ít nhất chiều cao của viewport */
+}
+
+.micCheckModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Màu nền mờ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.micCheckContent {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 45ch; /* Kích thước cụ thể hơn để tránh quá nhỏ */
+  height: auto;
+  max-width: 100%; /* Đảm bảo không vượt quá chiều rộng màn hình */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.micCheckContent p {
+  margin: 0.6em auto;
+}
+
+.micCheckContent__time-remain {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--error-color);
+}
+
+.record-container {
+  max-width: 30ch;
+}
+
+.record-container__desc {
+  background: var(--error-color);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+}
