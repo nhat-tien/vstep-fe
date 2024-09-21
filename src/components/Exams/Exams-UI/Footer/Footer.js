@@ -141,18 +141,22 @@ const Footer = () => {
           </Button>
         </div>
         <SaveButton />
-          {showConfirmation && (
-            <>
-              <div className={`${styles["modal-overlay"]} ${styles["show"]}`} />
-              <div
-                className={`${styles["confirmation-modal"]} ${styles["show"]}`}
-              >
-                <p>
-                  Ấn tiếp tục đồng nghĩa bạn sẽ kết thúc phần thi này và không
-                  thể quay lại.
-                </p>
-                <p>Bạn có chắc chắn muốn tiếp tục?</p>
-                <p>Lưu ý, hãy chắc chắn bản thân đã lưu phần thi hiện tại.</p>
+        {showConfirmation && (
+          <>
+            <div className={`${styles["modal-overlay"]} ${styles["show"]}`} />
+            <div
+              className={`${styles["confirmation-modal"]} ${styles["show"]}`}
+            >
+              <h3>Cảnh báo</h3>
+              <p>
+                Ấn tiếp tục đồng nghĩa bạn sẽ kết thúc phần thi này và không thể
+                quay lại.
+              </p>
+              <p>Bạn có chắc chắn muốn tiếp tục?</p>
+              <p style={{ color: "var(--error-color)", fontStyle: "italic" }}>
+                Lưu ý, hãy chắc chắn bản thân đã lưu phần thi hiện tại.
+              </p>
+              <div>
                 <button
                   className={styles["confirm-button"]}
                   onClick={handleConfirmSubmit}
@@ -166,8 +170,9 @@ const Footer = () => {
                   Không
                 </button>
               </div>
-            </>
-          )}
+            </div>
+          </>
+        )}
       </div>
     </footer>
   );

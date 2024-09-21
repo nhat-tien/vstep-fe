@@ -130,6 +130,9 @@
   opacity: 0; 
   animation: fadeInScale 0.3s ease forwards; 
   color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 @keyframes fadeInOverlay {
